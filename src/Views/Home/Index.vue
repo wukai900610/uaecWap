@@ -37,7 +37,7 @@ import {
 
 import {
     messages
-} from "@/assets/api/i18n/"
+} from "@/assets/i18n/"
 
 import customRequest from "@/assets/service/customRequest";
 import Util from "@/assets/service/customUtil";

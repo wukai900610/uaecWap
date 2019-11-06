@@ -14,7 +14,7 @@ import VueI18n from 'vue-i18n'
 import store from './store'
 import {
     messages
-} from "@/assets/api/i18n/"
+} from "@/assets/i18n/"
 import Util from "@/assets/service/customUtil"
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'

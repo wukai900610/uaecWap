@@ -6,7 +6,7 @@ import store from '../../store'
 import {
     messages
 }
-from "../api/i18n/";
+from "@/assets/i18n/";
 // 创建axios实例
 const service = axios.create({
     baseURL: '/api', // api的base_url

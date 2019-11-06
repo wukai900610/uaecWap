@@ -83,7 +83,7 @@ export default {
         back:'back'
     },
     page: {
-        Mine: 'My',
+        Mine: 'User Center',
         // viewMore:'立即登录，查看更多信息！',
         Login: 'Please Login',
         ViewMore: 'View More',

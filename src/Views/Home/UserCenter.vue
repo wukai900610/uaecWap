@@ -100,15 +100,35 @@ export default {
             })
         }
     },
-    mounted: function() {
-        // 更新登陆用户信息 接口数据来自缓存
-        // Axios.axiosInstance.post('/credit-data-xypj/xypj/gateway/getCurrentXypjUser.json')
-        // 	.then((response) => {
-        // 		// 设置用户信息
-        // 		Util.setsessionStorage('userInfo', response.data.data)
-        // 	}).catch((err) => {
-        // 		console.log(err);
-        // 	})
+    mounted () {
+        if (Util.getsessionStorage('token')) {
+            // 请求最新用户信息
+            let userInfo = Util.getsessionStorage('userInfo') || {}
+            customRequest({
+                url: '/WebUser/Get',
+                params: {
+                    userid: userInfo.ID
+                }
+            }).then(result => {
+                // 转用户信息
+                // result.User = result.data.User;
+                // 保存token
+                // result.Ticket = Util.getsessionStorage('token');
+
+                this.$store.dispatch('set_token', {
+                    User: result.data.User,
+                    isExhibitor: result.data.isExhibitor,
+                    Ticket: Util.getsessionStorage('token')
+                })
+            }).catch(e => {
+                // 退出登陆
+                this.$store.dispatch('out_login').then(() => {
+                    this.$router.push({
+                        name: 'home'
+                    })
+                })
+            })
+        }
     },
 }
 </script>
