@@ -7,7 +7,10 @@
     <!-- <van-skeleton title avatar :row="3" :loading="loading">
         <slot />
     </van-skeleton> -->
-    <slot />
+    <div class="flexWrap">
+        <slot />
+    </div>
+
 </div>
 </template>
 <script>
@@ -59,6 +62,9 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
+<style scoped lang="scss">
+    .flexWrap{
+        flex:1;
+        overflow: auto;
+    }
 </style>

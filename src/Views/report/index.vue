@@ -145,12 +145,6 @@ export default {
 .report {
     p {
         line-height: 40px !important;
-        // width: 1100px;
-        // margin: 0 auto;
-        // width: 100%;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
-        // white-space: nowrap;
     }
     .smallText {
         max-height: 200px;

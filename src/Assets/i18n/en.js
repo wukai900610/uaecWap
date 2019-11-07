@@ -83,6 +83,10 @@ export default {
         back:'back'
     },
     page: {
+        index:{
+            placeholder:'Matchup Expo',
+            search:'search'
+        },
         Mine: 'User Center',
         // viewMore:'立即登录，查看更多信息！',
         Login: 'Please Login',

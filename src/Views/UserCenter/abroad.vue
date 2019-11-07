@@ -1,10 +1,13 @@
 <template>
-<Layout class="abroad" :headerCss="'customHeaderStyle'" :title="lan == 'en' ? 'Self-run Exhibition Projects' : '联亚国际自办展报名'">
-    <van-cell-group>
-        <van-field :value="form.username" required label="用户名" placeholder="请输入用户名" clickable error-message="手机号格式错误" />
+<Layout :title="lan == 'en' ? 'Self-run Exhibition Projects' : '联亚国际自办展报名'">
+    <div class="abroad">
+        <van-cell-group>
+            <van-field :value="form.username" required label="用户名" placeholder="请输入用户名" clickable error-message="手机号格式错误" />
 
-        <van-field :value="form.password" type="password" required label="密码" placeholder="请输入密码" clickable />
-    </van-cell-group>
+            <van-field :value="form.password" type="password" required label="密码" placeholder="请输入密码" clickable />
+        </van-cell-group>
+    </div>
+
     <!-- <el-table v-loading="loading" :data="tableData.from">
         <template slot="empty">
             {{$t('tabel.Nodata')}}

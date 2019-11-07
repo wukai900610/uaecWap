@@ -22,10 +22,10 @@
 </template>
 
 <script>
+// import customRequest from "@/assets/service/customRequest";
 import Util from "@/assets/service/customUtil";
 
 export default {
-    name: "App",
     data() {
         return {
             keyword: this.$route.query.key || '',
@@ -33,10 +33,10 @@ export default {
         }
     },
     created() {
-        if (this.$i18n.locale == 'es') {
-            this.$i18n.locale = 'en'
-            Util.setsessionStorage('lang','en')
-        }
+        // if (this.$i18n.locale == 'es') {
+        //     this.$i18n.locale = 'en'
+        //     Util.setsessionStorage('lang','en')
+        // }
     },
     methods: {
         sendKeyWord(key) {
@@ -80,44 +80,6 @@ export default {
     .search-search {
         max-width: 1200px;
         margin: 50px auto;
-        /*.search-search-button:nth-child(1){*/
-        /*background: #FAAB23;*/
-        /*color:#fff;*/
-        /*}*/
-    }
-}
-</style>
-
-<style lang='scss'>
-.search {
-    .el-select .el-input {
-        width: 130px;
-        color: #000;
-    }
-    .el-input-group__append,
-    .el-input-group__prepend {
-        background: #fff;
-    }
-    /*.el-input-group__append .el-button, .el-input-group__prepend .el-button{*/
-    /*background:#FAAB23;*/
-    /*color:#fff;*/
-    /*}*/
-    .el-breadcrumb {
-        margin: 30px 0;
-    }
-    .el-pagination {
-        width: 1200px;
-        margin: 20px auto;
-        text-align: center;
-    }
-    .el-pagination.is-background .btn-next,
-    .el-pagination.is-background .btn-prev,
-    .el-pagination.is-background .el-pager li {
-        background: #fff;
-    }
-    .el-pagination.is-background .el-pager li:not(.disabled).active {
-        /*background:rgba(250,171,35,1);*/
-        /*border:1px solid rgba(200, 200, 200, 1);*/
     }
 }
 </style>

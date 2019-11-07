@@ -88,6 +88,10 @@ export default {
         back:'返回'
     },
     page: {
+        index:{
+            placeholder:'请输入搜索关键词',
+            search:'搜索'
+        },
         Mine: 'My',
         // viewMore:'立即登录，查看更多信息！',
         Login: '请登录',

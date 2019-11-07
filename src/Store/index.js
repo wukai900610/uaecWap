@@ -13,7 +13,7 @@ const store = new Vuex.Store(
         app
     },
     getters,
-    plugins: [createPersistedPlugin()]
+    // plugins: [createPersistedPlugin()]
 })
 
 export default store

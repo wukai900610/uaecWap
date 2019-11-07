@@ -1,32 +1,51 @@
 <template>
-<Layout :isIndex="'true'" class="index">
-    <GetListData class="banner" listName="banner" ref="banner" url="/b2bbanner" type="get">
-        <template slot-scope="slotProps">
-            <van-swipe :autoplay="6000" indicator-color="white">
-                <van-swipe-item>
-                    <router-link :to="{path: slotProps.data.LinkUrl}">
-                        <img :src="slotProps.data.Banner" alt="">
-                    </router-link>
-                </van-swipe-item>
-                <van-swipe-item>
-                    <router-link :to="{path: slotProps.data.LinkUrl}">
-                        <img :src="slotProps.data.Banner2" alt="">
-                    </router-link>
-                </van-swipe-item>
-            </van-swipe>
-        </template>
-    </GetListData>
+<Layout :isIndex="'true'">
+    <div class="index">
+        <GetListData class="banner" listName="banner" ref="banner" url="/b2bbanner" type="get">
+            <template slot-scope="slotProps">
+                <van-swipe :autoplay="6000" indicator-color="white">
+                    <van-swipe-item>
+                        <router-link :to="{path: slotProps.data.LinkUrl}">
+                            <img :src="slotProps.data.Banner" alt="">
+                        </router-link>
+                    </van-swipe-item>
+                    <van-swipe-item>
+                        <router-link :to="{path: slotProps.data.LinkUrl}">
+                            <img :src="slotProps.data.Banner2" alt="">
+                        </router-link>
+                    </van-swipe-item>
+                </van-swipe>
+            </template>
+        </GetListData>
 
-    <GetListData class="hotNews" listName="hotNews" ref="hotNews" url="/WebNews/Getlist" type="get" :payload="newsPayload">
-        <template slot-scope="slotProps">
-            <router-link :to="{name: 'ListDetailPage', params: {id: item.ID}, query: {title:item.Title}}" class="news van-hairline--top" v-for="item in slotProps.data" :key="item.ID">
-                <div>
-                    <h5>{{ item.Title }}</h5>
-                    <p>{{ item.AddTime | dateTime }}</p>
-                </div>
-            </router-link>
-        </template>
-    </GetListData>
+        <van-search :placeholder="$t('page.index.placeholder')" show-action shape="round" v-model="keyword">
+            <van-button slot="action" type="info" size="small" @click="onSearch">{{$t('page.index.search')}}</van-button>
+        </van-search>
+
+        <GetListData class="hotNews" listName="hotNews" ref="hotNews" url="/WebNews/Getlist" type="get" :payload="newsPayload">
+            <template slot-scope="slotProps">
+                <router-link :to="{name: 'reportDetails', query: {id:item.ID}}" class="news van-hairline--top" v-for="item in slotProps.data" :key="item.ID">
+                    <div>
+                        <h5>{{ item.Title }}</h5>
+                        <p>{{ item.AddTime | dateTime }}</p>
+                    </div>
+                </router-link>
+            </template>
+        </GetListData>
+
+        <div class="info">
+            <div v-if="lan == 'en'">
+                <h5>{{$store.getters.skin.en.home.home1}}</h5>
+                <p v-html="$store.getters.skin.en.home.home2"></p>
+            </div>
+            <div v-else>
+                <h5>{{$store.getters.skin.zh.home.home1}}</h5>
+                <p v-html="$store.getters.skin.zh.home.home2"></p>
+            </div>
+
+            <img :src="siteImg" :alt="$store.getters.skin.en.home.home1">
+        </div>
+    </div>
 </Layout>
 </template>
 
@@ -52,18 +71,30 @@ export default {
     },
     data() {
         return {
+            lan: Util.getsessionStorage('lang'),
+            keyword: '',
             newsPayload: {
                 page: 1,
                 size: 5,
                 kind: 'news',
-            }
+            },
+            siteImg: '../../../static/image/' + this.$store.state.app.skin.share.home.img[0],
         }
     },
-    created() {
+    created() {},
+    methods: {
+        onSearch(){
+            this.$router.push({
+                name:'MatchupExpo',
+                query:{
+                    keyword:this.keyword
+                }
+            })
+        }
     },
-    methods: {},
     watch: {
         '$i18n.locale'() {
+            this.lan = this.$i18n.locale;
             Locale.use(this.$i18n.locale, messages[this.$i18n.locale]);
         }
     },
@@ -72,6 +103,7 @@ export default {
 
 <style scoped lang="scss">
 .index {
+    background: #fff;
     .banner {
         padding: 0;
         margin-bottom: 0;
@@ -79,8 +111,10 @@ export default {
     }
     .hotNews {
         margin: 0;
+        padding: 0 ;
         height: auto;
         min-height: 2rem;
+        border-top: 1px solid #eee;
         .news {
             // overflow: auto;
             display: flex;
@@ -96,7 +130,7 @@ export default {
                     height: 0.8rem;
                     line-height: 1.4;
                     text-overflow: ellipsis;
-                    font-size: 0.26rem;
+                    font-size: 0.24rem;
                 }
                 // span {
                 //     padding-left: 0.2rem;
@@ -113,6 +147,21 @@ export default {
                     font-size: 0.24rem;
                 }
             }
+        }
+    }
+    .info {
+        margin: 0.15rem 0.15rem 0;
+        padding: 0.15rem 0 0;
+        border-top: 1px solid #eee;
+        line-height: 1.5;
+        h5 {
+            font-size: 0.3rem;
+        }
+        p {
+            font-size: 0.26rem;
+        }
+        img {
+            margin: 0.15rem 0;
         }
     }
 }

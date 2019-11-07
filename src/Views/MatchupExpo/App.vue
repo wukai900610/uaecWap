@@ -1,20 +1,11 @@
 <template>
-<Layout>
-    <div class="container">
-        <router-view></router-view>
-    </div>
-</Layout>
+    <router-view></router-view>
 </template>
 
 <script>
-import Layout from "@/components/Layout";
-
 export default {
     data() {
         return {}
     },
-    components: {
-        Layout,
-    }
 }
 </script>

@@ -43,12 +43,10 @@ export default {
 
 		next(vm => {
 			// 通过 `vm` 访问组件实例
-			if (to.name == 'FirstPage') {
+			if (to.name == 'home') {
 				vm.active = 0
-			} else if (to.name == 'SecondPage') {
-				vm.active = 1
 			} else if (to.name == 'UserCenter') {
-				vm.active = 2
+				vm.active = 1
 			}
 		})
 	},
@@ -57,12 +55,10 @@ export default {
 		// 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
 		// 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
 		// 可以访问组件实例 `this`
-		if (to.name == 'FirstPage') {
+		if (to.name == 'home') {
 			this.active = 0
-		} else if (to.name == 'SecondPage') {
-			this.active = 1
 		} else if (to.name == 'UserCenter') {
-			this.active = 2
+			this.active = 1
 		}
 
 		next()
@@ -71,7 +67,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .layout {
-    padding-bottom: 1.2rem;
+    padding-bottom: 1rem;
 }
 .customTabbar {
     .tabItem {

@@ -1,56 +1,56 @@
 <template>
-<Layout class="userCenter">
+<Layout>
     <span slot="header"></span>
 
-    <router-view></router-view>
+    <div class="userCenter">
+        <div class="userInfo">
+            <div class="title">
+                <span>{{$t('page.Mine')}}</span>
+                <!-- <em class="msg"></em> -->
+            </div>
+            <div class="info" v-if="isLogin">
+                <img :src="defaultUser">
+                <div>
+                    <span class="login">{{userInfo.LoginName}}</span>
+                </div>
+            </div>
+            <div class="info" @click="toLogin" v-else>
+                <img :src="defaultUser">
+                <div>
+                    <span class="login">{{$t('page.Login')}}</span>
+                    <p>{{$t('page.ViewMore')}}</p>
+                </div>
+            </div>
+        </div>
+        <van-cell-group>
+            <van-cell is-link :to="$t('userCenterMenu')[0].children[0].url">
+                <template slot="title">
+                    <div>
+                        <h5>{{$t('userCenterMenu')[0].children[0].name}}</h5>
+                    </div>
+                </template>
+            </van-cell>
 
-    <div class="userInfo">
-        <div class="title">
-            <span>{{$t('page.Mine')}}</span>
-            <!-- <em class="msg"></em> -->
-        </div>
-        <div class="info" v-if="isLogin">
-            <img :src="defaultUser">
-            <div>
-                <span class="login">{{userInfo.LoginName}}</span>
-            </div>
-        </div>
-        <div class="info" @click="toLogin" v-else>
-            <img :src="defaultUser">
-            <div>
-                <span class="login">{{$t('page.Login')}}</span>
-                <p>{{$t('page.ViewMore')}}</p>
-            </div>
-        </div>
+            <van-collapse v-for="(item, index) in $t('userCenterMenu')[1].children" :key="index" accordion v-model="activeNames">
+                <van-collapse-item :title="item.name" :name="index">
+                    <ul class="menus" v-if="item.children" style="margin-left:20px;">
+                        <li v-for="(item2, index2) in item.children" :key="index2">
+                            <router-link :to="{path:item2.url}">{{item2.name}}</router-link>
+                        </li>
+                    </ul>
+                </van-collapse-item>
+            </van-collapse>
+
+            <van-cell is-link :to="$t('userCenterMenu')[2].url">
+                <template slot="title">
+                    <div>
+                        <h5>{{$t('userCenterMenu')[2].name}}</h5>
+                    </div>
+                </template>
+            </van-cell>
+        </van-cell-group>
+        <van-button type="danger" :loading="login.status == 'loading'" :block="true" size="normal" @click="logout" v-if="isLogin">{{$t('form.Logout')}}</van-button>
     </div>
-    <van-cell-group>
-        <van-cell is-link :to="$t('userCenterMenu')[0].children[0].url">
-            <template slot="title">
-                <div>
-                    <h5>{{$t('userCenterMenu')[0].children[0].name}}</h5>
-                </div>
-            </template>
-        </van-cell>
-
-        <van-collapse v-for="(item, index) in $t('userCenterMenu')[1].children" :key="index" accordion v-model="activeNames">
-            <van-collapse-item :title="item.name" :name="index">
-                <ul class="menus" v-if="item.children" style="margin-left:20px;">
-                    <li v-for="(item2, index2) in item.children" :key="index2">
-                        <router-link :to="{path:item2.url}">{{item2.name}}</router-link>
-                    </li>
-                </ul>
-            </van-collapse-item>
-        </van-collapse>
-
-        <van-cell is-link :to="$t('userCenterMenu')[2].url">
-            <template slot="title">
-                <div>
-                    <h5>{{$t('userCenterMenu')[2].name}}</h5>
-                </div>
-            </template>
-        </van-cell>
-    </van-cell-group>
-    <van-button type="danger" :loading="login.status == 'loading'" :block="true" size="normal" @click="logout" v-if="isLogin">{{$t('form.Logout')}}</van-button>
 </Layout>
 </template>
 
