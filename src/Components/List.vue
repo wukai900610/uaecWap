@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div>
 	<van-list :immediate-check="false" v-model="cLoading" :finished="cFinished" finished-text="没有更多了" @load="onLoad">
 		<slot :cList="cList">
 			<van-cell v-for="(item, index) in cList" :key="index">

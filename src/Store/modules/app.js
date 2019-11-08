@@ -1971,6 +1971,7 @@ const app = {
         },
         page:{
             searchList:{
+                cache:false,
                 data: [],
                 loading: false,
                 finished: false,
@@ -1984,7 +1985,7 @@ const app = {
         setSkin: (state, data) => {
             // 未匹配默认展会
             state.skin = state.host[data.hostName] || state.host[data.default]
-            theme(state.skin.colorVariables, '#000000')
+            // theme(state.skin.colorVariables, '#000000')
         },
         setIsExhibitor: (state, data) => {
             state.userInfo.isExhibitor = data
@@ -2004,6 +2005,9 @@ const app = {
             state.page.searchList.page = 1
             state.page.searchList.finished = false
         },
+        searchListCache: (state,data) => {
+            state.page.searchList.cache = data
+        },
         searchListLoad: (state) => {
             state.page.searchList.loading = true
         },
@@ -2011,6 +2015,8 @@ const app = {
             state.page.searchList.data = state.page.searchList.data.concat(result.data)
             state.page.searchList.pageCount = result.count
             state.page.searchList.loading = false
+        },
+        searchListPageCount: (state) => {
             state.page.searchList.page++
         },
         searchListFinished: (state) => {

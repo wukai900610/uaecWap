@@ -74,7 +74,7 @@ export default {
                     }
                 ]
             },
-            keyword: '' || this.$route.query.keyword,
+            keyword: '',
             skeletonLoading: true,
             category: {
                 // active: 0,

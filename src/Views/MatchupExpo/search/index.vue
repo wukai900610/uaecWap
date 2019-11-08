@@ -78,6 +78,7 @@ export default {
         },
         onSearch() {
             this.$store.commit('searchListInit')
+            this.$store.commit('searchListType','')
             this.mode = 'keyword'
             this.getData()
         },
@@ -116,9 +117,12 @@ export default {
                 params: params
             }).then(result => {
                 if (result.data.length < this.$store.state.app.page.searchList.size) {
+                    this.$store.commit('searchListSuccess',result)
                     this.$store.commit('searchListFinished')
+                }else{
+                    this.$store.commit('searchListSuccess',result)
+                    this.$store.commit('searchListPageCount')
                 }
-                this.$store.commit('searchListSuccess',result)
             })
         },
         // 发送站内信
@@ -142,11 +146,20 @@ export default {
         }
     },
     created() {
-        if(this.$store.state.app.page.searchList.data.length <=0){
+        // 无缓存标识说明来自列表 重新加载数据
+        if(!this.$store.state.app.page.searchList.cache){
+            this.$store.commit('searchListInit')
             this.getData()
         }
     },
     beforeRouteLeave(to, from, next){
+        // 进入详情面时缓存列表数据
+        if(to.name == 'MatchupExpo_view'){
+            this.$store.commit('searchListCache',true)
+        }else{
+            this.$store.commit('searchListCache',false)
+        }
+
         // 记录页面滚动位置
         let searchListTop = this.$refs.searchList.scrollTop;
         Util.setsessionStorage('searchListTop',searchListTop)

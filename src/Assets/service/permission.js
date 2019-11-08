@@ -33,7 +33,6 @@ router.beforeEach((to, from, next) => {
                     })
                 }
             }else{
-                console.log(to.name);
                 if(to.name == 'Status'){
                     next({
                         name: 'abroad'

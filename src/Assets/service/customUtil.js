@@ -69,7 +69,10 @@ util.removeCookie = function(name) {
 util.doLogin = (result,url) => {
     store.dispatch('set_token', result.data).then(() => {
         if(url){
-            router.push(url)
+            // 防止页面登陆成功后 进入子页面无法后退
+            router.push({name:'home'}, () => {
+                router.push(url)
+            })
         }else{
             router.push({
                 name: 'UserCenter'
