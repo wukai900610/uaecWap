@@ -1,6 +1,6 @@
 <template>
 <Layout title="Matchup Expo">
-    <div class="matchupexop">
+    <div class="matchupExop">
         <div class="search">
             <van-dropdown-menu class="searchMenu">
                 <van-dropdown-item v-model="dropdownList.value" :options="dropdownList.data" />
@@ -74,11 +74,11 @@ export default {
                     }
                 ]
             },
-            keyword: '',
+            keyword: '' || this.$route.query.keyword,
             skeletonLoading: true,
             category: {
-                active: 0,
-                fixedNav: false,
+                // active: 0,
+                // fixedNav: false,
                 categoryNav: [],
                 data: []
             },
@@ -86,10 +86,7 @@ export default {
     },
     methods: {
         onSearch() {
-
-        },
-        sendKeyWord(key) {
-            this.$router.push('/MatchupExpo/search?key=' + this.keyword + '&page=1&type=' + this.dropdownList.value + '&section=0')
+            this.$router.push('/MatchupExpo/search?keyword=' + this.keyword + '&page=1&type=' + this.dropdownList.value + '&section=0')
         },
         nextCategory(item) {
             if (item.children.length == 0 || item.children[0].Name == 'N/A') {
@@ -97,16 +94,11 @@ export default {
             }
         },
         nextInvitation(item) {
-            this.$router.push('/MatchupExpo/search?key=' + item.Name + '&page=1&type=' + this.dropdownList.value + '&section=1&id=' + item.ID + '&CLevel=' + item.CLevel)
+            this.$router.push('/MatchupExpo/search?page=1&type=' + this.dropdownList.value + '&section=1&id=' + item.ID + '&CLevel=' + item.CLevel)
         }
     },
     created() {
         let that = this
-
-        if (this.$i18n.locale == 'es') {
-            this.$i18n.locale = 'en'
-            Util.setsessionStorage('lang', 'en')
-        }
 
         let get = function(level) {
             return new Promise((resolve, reject) => {
@@ -210,7 +202,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.matchupexop {
+.matchupExop {
     .search {
         display: flex;
         .searchMenu {

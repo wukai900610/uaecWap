@@ -1968,6 +1968,16 @@ const app = {
         element: {
             choose: '请选择',
             chooseen: 'please choose'
+        },
+        page:{
+            searchList:{
+                data: [],
+                loading: false,
+                finished: false,
+                pageCount: 1,
+                page: 1,
+                size: 10,
+            }
         }
     },
     mutations: {
@@ -1987,6 +1997,23 @@ const app = {
         },
         setUserInfo: (state, userInfo) => {
             state.userInfo = userInfo
+        },
+        searchListInit: (state) => {
+            state.page.searchList.data = []
+            state.page.searchList.page = 1
+            state.page.searchList.finished = false
+        },
+        searchListLoad: (state) => {
+            state.page.searchList.loading = true
+        },
+        searchListSuccess: (state, result) => {
+            state.page.searchList.data = state.page.searchList.data.concat(result.data)
+            state.page.searchList.pageCount = result.count
+            state.page.searchList.loading = false
+            state.page.searchList.page++
+        },
+        searchListFinished: (state) => {
+            state.page.searchList.finished = true
         },
     },
     actions: {
@@ -2047,7 +2074,12 @@ const app = {
 
                 resolve()
             })
-        }
+        },
+        // searchList_init: ({
+        //     commit
+        // }) => {
+        //     commit('outToken')
+        // }
     },
     getters: {}
 }

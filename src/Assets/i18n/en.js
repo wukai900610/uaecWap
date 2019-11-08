@@ -97,6 +97,7 @@ export default {
         noData:'no data'
     },
     prompt:{
+        title: 'success!',
         modifyPassSuccess: 'Password modify complete',
     },
     form: {

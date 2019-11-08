@@ -366,79 +366,42 @@ export default new Router({
             component: () => import('@/Views/MatchupExpo/App'),
             children: [{
                     path: '/',
-                    name: 'MatchupExpo_index',
+                    name: 'MatchupExpo_home',
                     component: () => import('@/Views/MatchupExpo/home'),
-                // },
-                // {
-                //     path: 'search',
-                //     component: () => import('@/Views/MatchupExpo/search/App'),
-                //     meta: {
-                //         title: '关键词搜索',
-                //         icon: 'form',
-                //         auth:true
-                //     },
-                    // children: [
-                    //     {
-                    //         path: '/',
-                    //         name: 'search-list',
-                    //         component: () => import('@/Views/MatchupExpo/search/index'),
-                        // },
-                        // {
-                        //     path: 'view',
-                        //     name: 'search-view',
-                        //     component: () => import('@/Views/MatchupExpo/search/view'),
-                        // },
-                        // {
-                        //     path: 'viewAllOffers',
-                        //     name: 'search-viewAllOffers',
-                        //     component: () => import('@/Views/MatchupExpo/search/viewAllOffers'),
-                        // },
-                        // {
-                        //     path: 'viewProductsCategories',
-                        //     name: 'search-viewProductsCategories',
-                        //     component: () => import('@/Views/MatchupExpo/search/viewProductsCategories'),
-                        // },
-                        // {
-                        //     path: 'viewAllProducts',
-                        //     name: 'search-viewAllProducts',
-                        //     component: () => import('@/Views/MatchupExpo/search/viewAllProducts'),
-                        // },
-                        // {
-                        //     path: 'viewOffersCategories',
-                        //     name: 'search-viewOffersCategories',
-                        //     component: () => import('@/Views/MatchupExpo/search/viewOffersCategories'),
-                    //     }
-                    // ]
-                // },
-                // {
-                //     path: 'Invitation',
-                //     name: 'Invitation',
-                //     meta: {
-                //         title: '邀约填写3.7.1.1',
-                //         auth: true,
-                //         icon: 'form'
-                //     },
-                //     component: () => import('@/Views/MatchupExpo/Invitation/index'),
-                // },
-                // {
-                //     path: 'activityList',
-                //     name: 'activityList',
-                //     meta: {
-                //         title: '展会活动3.9',
-                //         auth: true,
-                //         icon: 'form'
-                //     },
-                //     component: () => import('@/Views/MatchupExpo/activityList/index'),
-                // },
-                // {
-                //     path: 'contact',
-                //     name: 'contact',
-                //     meta: {
-                //         title: '查看活动3.9.1.2',
-                //         auth: true,
-                //         icon: 'form'
-                //     },
-                //     component: () => import('@/Views/MatchupExpo/contact/index'),
+                },
+                {
+                    path: 'search',
+                    name: 'MatchupExpo_search',
+                    component: () => import('@/Views/MatchupExpo/search/'),
+                    meta: {
+                        auth:true,
+                    },
+                },
+                {
+                    path: 'view',
+                    name: 'MatchupExpo_view',
+                    meta: {
+                        auth: true,
+                    },
+                    component: () => import('@/Views/MatchupExpo/search/view'),
+                },
+                {
+                    path: 'Invitation',
+                    name: 'MatchupExpo_invitation',
+                    meta: {
+                        title: '邀约填写3.7.1.1',
+                        auth: true,
+                    },
+                    component: () => import('@/Views/MatchupExpo/Invitation/index'),
+                },
+                {
+                    path: 'contact',
+                    name: 'MatchupExpo_contact',
+                    meta: {
+                        title: '查看活动3.9.1.2',
+                        auth: true,
+                    },
+                    component: () => import('@/Views/MatchupExpo/contact/index'),
                 },
             ]
         },

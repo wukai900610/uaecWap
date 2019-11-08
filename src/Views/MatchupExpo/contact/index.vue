@@ -1,127 +1,80 @@
 <template>
-<div class="contact warp">
-    <h2>Contact Now</h2>
-    <el-form ref="form" :rules="rules" :model="form" label-width="80px">
+<Layout title="Contact Now">
+    <div class="contact">
+        <van-cell-group>
+            <van-field v-model="form.subject" label="Subject" placeholder="Subject" />
+            <van-field v-model="form.message" rows="2" autosize label="Content" type="textarea" maxlength="500" placeholder="Content" show-word-limit />
+        </van-cell-group>
+    </div>
+    <!-- <el-form class="contact" ref="form" :rules="rules" :model="form" label-width="80px">
         <el-form-item label="Subject" prop="Subject">
             <el-input v-model="form.Subject"></el-input>
         </el-form-item>
-        <!--<el-form-item label="From">-->
-        <!--<el-input v-model="form.UserTo"></el-input>-->
-        <!--</el-form-item>-->
         <el-form-item label="Content" prop="Message">
             <el-input type="textarea" v-model="form.Message"></el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="onSubmit">Submit</el-button>
         </el-form-item>
-    </el-form>
-</div>
+    </el-form> -->
+</Layout>
 </template>
 
 <script>
-import {
-    getSupplier,
-    postMessage
-} from "@/assets/api/api";
+import customRequest from "@/assets/service/customRequest";
 import Util from "@/assets/service/customUtil";
 
+import Layout from "@/components/Layout";
+
 export default {
+    components: {
+        Layout,
+    },
     data() {
         return {
-            input1: '',
-            textarea2: '',
             form: {
-                Subject: '',
-                UserTo: '',
-                Message: ''
+                subject: '',
+                userTo: this.$route.query.id,
+                message: ''
             },
-            rules: {
-                Subject: [{
-                    required: true,
-                    message: 'Please enter Subject',
-                    trigger: 'blur'
-                }, ],
-                Message: [{
-                    required: true,
-                    message: 'Please enter Message',
-                    trigger: 'blur'
-                }]
-            }
+            // rules: {
+            //     Subject: [{
+            //         required: true,
+            //         message: 'Please enter Subject',
+            //         trigger: 'blur'
+            //     }, ],
+            //     Message: [{
+            //         required: true,
+            //         message: 'Please enter Message',
+            //         trigger: 'blur'
+            //     }]
+            // }
         }
     },
-    created() {
-        if (this.$i18n.locale = 'es') {
-            this.$i18n.locale = 'en'
-            Util.setsessionStorage('lang','en')
-        }
-    },
+    created() {},
     methods: {
         onSubmit() {
-            this.$refs['form'].validate((valid) => {
-                if (valid) {
-                    this.form['code'] = 'an'
-                    this.form['UserTo'] = this.$route.query.id
-                    postMessage(this.form)
-                        .then(result => {
-                            this.$message({
-                                message: this.$t('prompt.title'),
-                                type: 'success'
-                            })
-                            this.$router.back()
-                        })
-                }
-            });
+            customRequest({
+                method: 'post',
+                url: '/B2BMessage',
+                data: this.form
+            }).then(result => {
+                this.$message({
+                    message: this.$t('prompt.title'),
+                    type: 'success'
+                }).then(() => {
+                    this.$router.back()
+                })
+            })
+            // this.$refs['form'].validate((valid) => {
+            //     if (valid) {
+            //     }
+            // });
         }
     },
-    watch: {
-        '$i18n.locale'() {
-            if (this.$i18n.locale == 'es') {
-                this.$i18n.locale = 'en'
-                Util.setsessionStorage('lang','en')
-            }
-        }
-    }
 }
 </script>
 
 <style scoped lang="scss">
-.contact {
-    width: 1200px;
-    margin: 70px auto;
-    h2 {
-        text-align: center;
-        margin: 70px 0;
-    }
-    .el-form {
-        .el-input {
-            width: 560px;
-        }
-        .el-form-item {
-            margin-left: 200px;
-        }
-        .el-form-item:last-child {
-            margin: 20px 270px;
-        }
-    }
-    .el-button {
-        width: 560px;
-        border-radius: 4px;
-        display: block;
-        color: #fff;
-    }
-}
-</style>
-<style lang="scss">
-.contact {
-    .el-input__inner,
-    .el-textarea {
-        width: 560px;
-    }
-    .el-form-item__label {
-        width: 150px !important;
-    }
-    .el-form-item__error {
-        left: 70px;
-    }
-}
+.contact {}
 </style>

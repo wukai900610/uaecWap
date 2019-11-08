@@ -102,6 +102,7 @@ export default {
         noData:'暂无数据'
     },
     prompt:{
+        title: '提交成功!',
         modifyPassSuccess: '密码修改成功',
     },
     form: {

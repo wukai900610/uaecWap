@@ -5,12 +5,12 @@
             <template slot-scope="slotProps">
                 <van-swipe :autoplay="6000" indicator-color="white">
                     <van-swipe-item>
-                        <router-link :to="{path: slotProps.data.LinkUrl}">
+                        <router-link :to="{path: slotProps.data.LinkUrl.split('/#')[1]}">
                             <img :src="slotProps.data.Banner" alt="">
                         </router-link>
                     </van-swipe-item>
                     <van-swipe-item>
-                        <router-link :to="{path: slotProps.data.LinkUrl}">
+                        <router-link :to="{path: slotProps.data.LinkUrl.split('/#')[1]}">
                             <img :src="slotProps.data.Banner2" alt="">
                         </router-link>
                     </van-swipe-item>
