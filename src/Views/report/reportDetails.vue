@@ -36,6 +36,7 @@ export default {
 <style lang="scss">
 .article {
     padding: 0.25rem;
+    background: #fff;
     font-size: 0.26rem;
     a {
         color: #333;

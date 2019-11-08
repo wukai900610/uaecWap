@@ -22,17 +22,17 @@ export default {
     },
 	methods: {
 		onClickLeft(){
-			if(this.customLeftClick){
-				this.customLeftClick();
-			}else{
-                console.log(history.length);
-                // if(history.length <=0){
-                //     this.$router.push({
-                //         name:'home'
-                //     });
-    			// }else{
-    			// }
-				this.$router.back();
+            // 自定义返回方法
+			if (this.customLeftClick) {
+				this.customLeftClick()
+				return false;
+			}
+			if (window.history.length <= 1) {
+				this.$router.relpace({
+					name: 'home'
+				})
+			} else {
+				this.$router.back(-1)
 			}
 		}
     },

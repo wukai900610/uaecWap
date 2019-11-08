@@ -1998,6 +1998,7 @@ const app = {
         setUserInfo: (state, userInfo) => {
             state.userInfo = userInfo
         },
+        // matchup搜索列表
         searchListInit: (state) => {
             state.page.searchList.data = []
             state.page.searchList.page = 1
