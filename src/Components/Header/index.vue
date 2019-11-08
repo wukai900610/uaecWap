@@ -25,6 +25,13 @@ export default {
 			if(this.customLeftClick){
 				this.customLeftClick();
 			}else{
+                console.log(history.length);
+                // if(history.length <=0){
+                //     this.$router.push({
+                //         name:'home'
+                //     });
+    			// }else{
+    			// }
 				this.$router.back();
 			}
 		}

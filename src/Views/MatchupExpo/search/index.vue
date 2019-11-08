@@ -27,20 +27,6 @@
                     </van-cell>
                 </template>
             </List>
-            <!-- <van-list :immediate-check="false" v-model="list.loading" :finished="list.finished" finished-text="No More" @load="onLoad">
-                <van-cell v-for="item in list.data" :key="item.ID" @click="toDetail(item)">
-                    <van-card style="background:#fff" :thumb="item.Img">
-                        <h5 slot="title">{{item.Name}}</h5>
-                        <div slot="desc">
-                            <p>{{item.Description}}</p>
-                            <div class="info">
-                                <van-button round hairline size="small" type="info" @click.stop="nextContact(dropdownList.value)">Contact Company</van-button>
-                                <van-button round hairline size="small" type="warning" @click.stop="nextInvitation(dropdownList.value)">Meet Company</van-button>
-                            </div>
-                        </div>
-                    </van-card>
-                </van-cell>
-            </van-list> -->
         </div>
     </div>
 </Layout>
@@ -78,14 +64,6 @@ export default {
                     }
                 ]
             },
-            // list: {
-            //     data: [],
-            //     loading: false,
-            //     finished: false,
-            //     pageCount: 1,
-            //     page: 1,
-            //     size: 10,
-            // }
         }
     },
     methods: {
@@ -99,9 +77,6 @@ export default {
             })
         },
         onSearch() {
-            // this.list.page = 1
-            // this.list.data = []
-            // this.list.finished = false
             this.$store.commit('searchListInit')
             this.mode = 'keyword'
             this.getData()
@@ -110,7 +85,6 @@ export default {
             this.getData()
         },
         getData() {
-            // this.list.loading = true
             this.$store.commit('searchListLoad')
 
             let params = {}
@@ -142,13 +116,8 @@ export default {
                 params: params
             }).then(result => {
                 if (result.data.length < this.$store.state.app.page.searchList.size) {
-                    // this.list.finished = true
                     this.$store.commit('searchListFinished')
                 }
-                // this.list.data = this.list.data.concat(result.data)
-                // this.list.pageCount = result.count
-                // this.list.loading = false
-                // this.list.page++
                 this.$store.commit('searchListSuccess',result)
             })
         },
@@ -173,16 +142,18 @@ export default {
         }
     },
     created() {
-        if(this.$store.state.app.page.searchList.data ===0){
+        if(this.$store.state.app.page.searchList.data.length <=0){
             this.getData()
         }
     },
     beforeRouteLeave(to, from, next){
+        // 记录页面滚动位置
         let searchListTop = this.$refs.searchList.scrollTop;
         Util.setsessionStorage('searchListTop',searchListTop)
         next()
     },
     mounted(){
+        // 读取页面滚动位置
         var searchListTop = Util.getsessionStorage('searchListTop')
         this.$refs.searchList.scrollTo(0,searchListTop)
     }
