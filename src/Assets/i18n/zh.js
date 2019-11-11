@@ -3,7 +3,7 @@ export default {
             name: '自办展参展管理',
             children: [{
                 name: '报名信息',
-                url: '/UserCenter/exhibitors'
+                url: '/UserCenter/abroad'
             }]
         },
         {
@@ -98,7 +98,7 @@ export default {
         ViewMore: '查看更多',
         modifyPass:'修改密码'
     },
-    tabel: {
+    table: {
         Row: '序号',
         Fair: '展会名称',
         FairName: '展览名称',
@@ -192,6 +192,7 @@ export default {
         submit:'提交',
         cancel:'取消',
         reset:'重置',
+        modify:'修改',
     },
     tabNav: [{
         title: '主页',

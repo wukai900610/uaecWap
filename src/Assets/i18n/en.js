@@ -3,7 +3,7 @@ export default {
             name: 'Exhibition Management',
             children: [{
                 name: 'Application Info',
-                url: '/UserCenter/exhibitors'
+                url: '/UserCenter/abroad'
             }]
         },
         {
@@ -93,7 +93,7 @@ export default {
         ViewMore: 'View More',
         modifyPass:'modify password',
     },
-    tabel: {
+    table: {
         Row: 'Row',
         Fair: 'Fair',
         FairName: 'Fair Name',
@@ -188,6 +188,7 @@ export default {
         submit:'submit',
         cancel:'cancel',
         reset:'reset',
+        modify:'modify',
     },
     tabNav: [{
         title: 'Home',

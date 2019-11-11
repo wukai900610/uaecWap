@@ -49,7 +49,7 @@ export default new Router({
             meta: {
                 auth: true,
             },
-            component: () => import('@/Views/UserCenter/Account/Index')
+            component: () => import('@/Views/UserCenter/Account')
         },
         // 英文参展 观展
         {
