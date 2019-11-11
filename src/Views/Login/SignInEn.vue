@@ -136,23 +136,18 @@ export default {
                     }
                     input {
                         text-align: center;
+                        font-size: .28rem;
                     }
                 }
             }
         }
-        .toggle {
-            padding-top: 0.2rem;
-            text-align: center;
-            color: #fff;
-            font-size: 0.24rem;
-        }
     }
     .other {
         position: absolute;
-        left: 50%;
-        bottom: 0.6rem;
-        transform: translate(-50%,0);
+        bottom: 0.25rem;
+        width: 100%;
         color: #fff;
+        text-align: center;
         font-size: 0.3rem;
         a {
             padding: 0 0.25rem;

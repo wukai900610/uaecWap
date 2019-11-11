@@ -50,6 +50,87 @@ export default new Router({
                 auth: true,
             },
             component: () => import('@/Views/UserCenter/Account/Index')
+        },
+        // 英文参展 观展
+        {
+            path: '/UserCenter/exhibitors',
+            name: 'exhibitors',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/exhibitors/')
+        },
+        // {
+        //     path: '/UserCenter/putEnExhibitors',
+        //     name: 'userPutEnExhibitors',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => {
+        //         // 区别尼日利亚版
+        //         if (Util.isNiCode())
+        //         {
+        //             return import('@/Views/UserCenter/OrderEn/putEnExhibitorsForNigeria')
+        //         }
+        //         else
+        //         {
+        //             return import('@/Views/UserCenter/OrderEn/putEnExhibitors')
+        //         }
+        //     }
+        // },
+        // {
+        //     path: '/UserCenter/ExhibitorAdd',
+        //     name: 'ExhibitorAdd',
+        //     meta: {
+        //         auth: true,
+        //         icon: 'form'
+        //     },
+        //     component: () => import('@/Views/UserCenter/Order/ExhibitorAdd'),
+        // },
+        // {
+        //     path: '/UserCenter/ExhibitorEdit',
+        //     name: 'ExhibitorEdit',
+        //     meta: {
+        //         auth: true,
+        //         icon: 'form'
+        //     },
+        //     component: () => import('@/Views/UserCenter/Order/ExhibitorEdit'),
+        // },
+        // {
+        //     path: '/UserCenter/ExhibitorRules',
+        //     name: 'ExhibitorRules',
+        //     meta: {
+        //         auth: true,
+        //         icon: 'form'
+        //     },
+        //     component: () => import('@/Views/UserCenter/Order/ExhibitorRules'),
+        // },
+        // {
+        //     path: '/UserCenter/VisitorAdd',
+        //     name: 'VisitorAdd',
+        //     meta: {
+        //         auth: true,
+        //         icon: 'form'
+        //     },
+        //     component: () => import('@/Views/UserCenter/Order/VisitorAdd'),
+        // },
+        // {
+        //     path: '/UserCenter/VisitorEdit',
+        //     name: 'VisitorEdit',
+        //     meta: {
+        //         auth: true,
+        //         icon: 'form'
+        //     },
+        //     component: () => import('@/Views/UserCenter/Order/VisitorEdit'),
+        // },
+        // {
+        //     path: '/UserCenter/VisitorRules',
+        //     name: 'VisitorRules',
+        //     meta: {
+        //         auth: true,
+        //         icon: 'form'
+        //     },
+        //     component: () => import('@/Views/UserCenter/Order/VisitorRules'),
         // },
         // {
         //     path: '/UserCenter/ChangePassword',
@@ -235,97 +316,7 @@ export default new Router({
         //     },
         //     component: () => import('@/Views/UserCenter/Invitation/replyInvitation')
         // },
-        // // 英文参展 观展
-        // {
-        //     path: '/UserCenter/enExhibitors',
-        //     name: 'userEnExhibitors',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => {
-        //         // 区别尼日利亚版
-        //         if (Util.isNiCode())
-        //         {
-        //             return import('@/Views/UserCenter/OrderEn/enExhibitorsForNigeria')
-        //         }
-        //         else
-        //         {
-        //             return import('@/Views/UserCenter/OrderEn/enExhibitors')
-        //         }
-        //     }
         // },
-        // {
-        //     path: '/UserCenter/putEnExhibitors',
-        //     name: 'userPutEnExhibitors',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => {
-        //         // 区别尼日利亚版
-        //         if (Util.isNiCode())
-        //         {
-        //             return import('@/Views/UserCenter/OrderEn/putEnExhibitorsForNigeria')
-        //         }
-        //         else
-        //         {
-        //             return import('@/Views/UserCenter/OrderEn/putEnExhibitors')
-        //         }
-        //     }
-        // },
-        // {
-        //     path: '/UserCenter/ExhibitorAdd',
-        //     name: 'ExhibitorAdd',
-        //     meta: {
-        //         auth: true,
-        //         icon: 'form'
-        //     },
-        //     component: () => import('@/Views/UserCenter/Order/ExhibitorAdd'),
-        // },
-        // {
-        //     path: '/UserCenter/ExhibitorEdit',
-        //     name: 'ExhibitorEdit',
-        //     meta: {
-        //         auth: true,
-        //         icon: 'form'
-        //     },
-        //     component: () => import('@/Views/UserCenter/Order/ExhibitorEdit'),
-        // },
-        // {
-        //     path: '/UserCenter/ExhibitorRules',
-        //     name: 'ExhibitorRules',
-        //     meta: {
-        //         auth: true,
-        //         icon: 'form'
-        //     },
-        //     component: () => import('@/Views/UserCenter/Order/ExhibitorRules'),
-        // },
-        // {
-        //     path: '/UserCenter/VisitorAdd',
-        //     name: 'VisitorAdd',
-        //     meta: {
-        //         auth: true,
-        //         icon: 'form'
-        //     },
-        //     component: () => import('@/Views/UserCenter/Order/VisitorAdd'),
-        // },
-        // {
-        //     path: '/UserCenter/VisitorEdit',
-        //     name: 'VisitorEdit',
-        //     meta: {
-        //         auth: true,
-        //         icon: 'form'
-        //     },
-        //     component: () => import('@/Views/UserCenter/Order/VisitorEdit'),
-        // },
-        // {
-        //     path: '/UserCenter/VisitorRules',
-        //     name: 'VisitorRules',
-        //     meta: {
-        //         auth: true,
-        //         icon: 'form'
-        //     },
-        //     component: () => import('@/Views/UserCenter/Order/VisitorRules'),
-        },
         // 登陆
         {
             path: '/SignIn',

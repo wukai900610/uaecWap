@@ -3,7 +3,7 @@ export default {
             name: '自办展参展管理',
             children: [{
                 name: '报名信息',
-                url: '/UserCenter/abroad'
+                url: '/UserCenter/exhibitors'
             }]
         },
         {
@@ -189,6 +189,9 @@ export default {
         Login: '登录名',
         Logout: '退出',
         ForgetPassword: '忘记密码',
+        submit:'提交',
+        cancel:'取消',
+        reset:'重置',
     },
     tabNav: [{
         title: '主页',

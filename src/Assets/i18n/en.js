@@ -3,7 +3,7 @@ export default {
             name: 'Exhibition Management',
             children: [{
                 name: 'Application Info',
-                url: '/UserCenter/abroad'
+                url: '/UserCenter/exhibitors'
             }]
         },
         {
@@ -185,6 +185,9 @@ export default {
         Login: 'Login',
         Logout: 'Logout',
         ForgetPassword: 'Forget Password',
+        submit:'submit',
+        cancel:'cancel',
+        reset:'reset',
     },
     tabNav: [{
         title: 'Home',

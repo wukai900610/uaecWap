@@ -365,7 +365,8 @@ const app = {
                         press1: 'Prensa Registro  &  Contacto',
                         press2: 'Cualquier miembro de la prensa que desee asistir a esta feria debe contactarnos. Nuestros contactos estarán encantados de ayudarle con cualquier consulta que pueda tener relacionada con sus informes. Alternativamente, puede registrarse en el sitio presentando su tarjeta de trabajo en el mostrador de inscripción durante la feria.',
                     }
-                }
+                },
+                ExhiInfo:['Textile&Clothing Machine','Others','Luggage&Shoes','Yarns','Trims & Accessories','Fabrics','Textile Chemicals','Home Textile']
             },
             'autoequip-nigeria': {
                 logo: '/static/image/logo5.png',
@@ -638,7 +639,8 @@ const app = {
                             '810hall2.png'
                         ]
                     }
-                }
+                },
+                ExhiInfo:['Components','Vehicle Electronics','Accessories Modification','Repair Equipment','Vehicle Maintenance','Festivals & Parties','Others']
             },
             //打不开
             'cotex-colombia': {
@@ -1381,7 +1383,8 @@ const app = {
                         press1: 'Prensa Registro  &  Contacto',
                         press2: 'Cualquier miembro de la prensa que desee asistir a esta feria debe contactarnos. Nuestros contactos estarán encantados de ayudarle con cualquier consulta que pueda tener relacionada con sus informes. Alternativamente, puede registrarse en el sitio presentando su tarjeta de trabajo en el mostrador de inscripción durante la feria.',
                     }
-                }
+                },
+                ExhiInfo:['Housewares Products','Home Accessories','Home Textile','Gardening & Outdoor','Gifts&Office Supplies','Festivals & Parties','Consumer Electronics','Sports Beauty']
             },
             'homeshow-nigeria': {
                 logo: '/static/image/logo4.png',
@@ -1665,7 +1668,8 @@ const app = {
                             '809hall2.png'
                         ]
                     }
-                }
+                },
+                ExhiInfo:['Housewares Products','Home Accessories','Home Textile','Gardening & Outdoor','Gifts&Office Supplies','Festivals & Parties','Consumer Electronics','Sports Beauty']
             },
             'nigeriatex': {
                 logo: '/static/image/logo3.png',
@@ -1959,7 +1963,8 @@ const app = {
                             '808hall2.png'
                         ]
                     }
-                }
+                },
+                ExhiInfo:['Apparels & Accessories','Textile Chemicals','Footwear & Bags','Yarns','Trims & Accessories','Fabrics','Home Textile']
             },
         },
         skin: {},
