@@ -100,36 +100,7 @@ export default {
             })
         }
     },
-    mounted () {
-        if (Util.getsessionStorage('token')) {
-            // 请求最新用户信息
-            let userInfo = Util.getsessionStorage('userInfo') || {}
-            customRequest({
-                url: '/WebUser/Get',
-                params: {
-                    userid: userInfo.ID
-                }
-            }).then(result => {
-                // 转用户信息
-                // result.User = result.data.User;
-                // 保存token
-                // result.Ticket = Util.getsessionStorage('token');
-
-                this.$store.dispatch('set_token', {
-                    User: result.data.User,
-                    isExhibitor: result.data.isExhibitor,
-                    Ticket: Util.getsessionStorage('token')
-                })
-            }).catch(e => {
-                // 退出登陆
-                this.$store.dispatch('out_login').then(() => {
-                    this.$router.push({
-                        name: 'home'
-                    })
-                })
-            })
-        }
-    },
+    mounted () {},
 }
 </script>
 
