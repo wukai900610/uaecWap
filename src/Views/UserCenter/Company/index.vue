@@ -5,7 +5,7 @@
         <van-cell-group class="group">
             <van-field :label="$t('form.CompanyName')" label-width="110" :placeholder="$t('form.CompanyName')" v-model="form.Name" :disabled="!edit" />
             <van-field :label="$t('form.ContactPerson')" label-width="110" :placeholder="$t('form.ContactPerson')" v-model="form.ManName" :disabled="!edit" />
-            <van-uploader class="upload" v-model="form.fileList" :after-read="afterRead" multiple :max-count="1" :deletable="edit" />
+            <van-uploader class="upload" v-model="fileList" @delete="delUpload" :after-read="afterRead" multiple :max-count="1" :deletable="edit" :disabled="!edit" />
         </van-cell-group>
 
         <van-cell-group class="group">
@@ -21,8 +21,8 @@
         </van-cell-group>
         <van-cell-group class="group">
             <van-field :label="$t('form.Website')" :placeholder="$t('form.Website')" v-model="form.Website" :disabled="!edit" />
-            <van-field :label="$t('form.CompanyDescription')" :placeholder="$t('form.CompanyDescription')" label-width="140" v-model="form.Description" :disabled="!edit" />
-            <van-field :label="$t('form.Summary')" :placeholder="$t('form.Summary')" label-width="130" v-model="form.Summary" :disabled="!edit" />
+            <van-field :label="$t('form.CompanyDescription')" label-width="140" :placeholder="$t('form.CompanyDescription')" v-model="form.Description" :disabled="!edit" />
+            <van-field :label="$t('form.Summary')" rows="2" type="textarea" autosize show-word-limit maxlength="200" :placeholder="$t('form.Summary')" v-model="form.Summary" :disabled="!edit" />
         </van-cell-group>
         <van-row class="actions" type="flex" gutter="20">
             <van-col span="24" v-if="!edit">
@@ -59,8 +59,9 @@ export default {
             lan: Util.getsessionStorage('lang'),
             edit: this.$route.query.id ? false : true,
             copyData: {},
+            fileList: [],
             form: {
-                fileList: [],
+                Summary: '',
             },
         }
     },
@@ -94,7 +95,9 @@ export default {
         },
         afterRead(file) {
             this.form.Img = file.content
-            // console.log(file);
+        },
+        delUpload(file){
+            this.form.Img = ''
         },
         // toggle(key, index) {
         //     if (this.edit) {
@@ -111,30 +114,34 @@ export default {
         },
         onSubmit() {
             if (!this.form.Img) {
-                this.$dialog.alert({message:this.$t('prompt.img')})
+                this.$dialog.alert({
+                    message: this.$t('prompt.img')
+                })
                 return
             }
             if (!this.form.ManWeChat && !this.form.ManFacebook && !this.form.ManWhatsapp) {
                 this.$dialog.alert({
-                    message:this.$t('prompt.Contact')
+                    message: this.$t('prompt.Contact')
                 })
                 return false
             }
-            if(this.$route.query.id){
+            if (this.$route.query.id) {
 
             }
 
         },
         onInit() {
             this.form = {
+                Summary: '',
                 ...Util.getNewObj(this.copyData),
-                ...this.form
             }
-            this.form.fileList.push({
-                name: this.form.Name,
-                url: this.form.Img,
-                uid: this.form.ID,
-            })
+            if (this.$route.query.id) {
+                this.fileList = [{
+                    url:this.form.Img
+                }]
+            }else{
+                this.fileList = []
+            }
         },
     }
 }
