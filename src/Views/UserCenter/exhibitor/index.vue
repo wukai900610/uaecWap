@@ -1,6 +1,6 @@
 <template>
 <Layout :title="($store.state.app.userInfo.isExhibitor==1?'Exhibitors':'Visitors') + ' Application'">
-    <div class="exhibitors">
+    <div class="exhibitor">
         <van-cell-group class="group">
             <van-field label="Company:" v-model="form.Company" placeholder="Company" :disabled="!edit" />
             <van-field label="First/Given Name:" label-width="120" v-model="form.ManFirstName" placeholder="First/Given Name" :disabled="!edit" />
@@ -79,7 +79,7 @@
                 <van-button type="info" size="small" @click="onSubmit">{{$t('form.submit')}}</van-button>
             </van-col>
             <van-col span="12" v-if="edit">
-                <van-button type="warning" size="small" @click="onReset">{{$t('form.reset')}}</van-button>
+                <van-button type="warning" size="small" @click="onInit">{{$t('form.reset')}}</van-button>
             </van-col>
         </van-row>
         <van-row class="actions" type="flex" gutter="20" v-if="$route.query.id">
@@ -124,7 +124,7 @@ export default {
                 result.data.Order.ExhiInfoArr = result.data.Order.ExhiInfo.split(',')
                 result.data.Order.LightArea = result.data.Order.LightArea.toString()
                 this.copyData = result.data.Order
-                this.form = Util.getNewObj(this.copyData)
+                this.onInit()
             })
         }
     },
@@ -178,7 +178,7 @@ export default {
                 }
             });
         },
-        onReset() {
+        onInit() {
             this.form = Util.getNewObj(this.copyData)
         },
     }
@@ -186,7 +186,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.exhibitors {
+.exhibitor {
     overflow: hidden;
     .group {
         margin-bottom: 0.2rem;

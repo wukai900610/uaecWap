@@ -1,23 +1,28 @@
 <template>
-<Layout :title="$t($route.query.id ? 'table.EditCompany' : 'table.addCompany')">
+<Layout :title="$t($route.query.id ? 'table.EditCompany' : 'table.AddCompany')">
     <div class="company">
         <div v-if="lan=='zh'">请填写英文信息以供外商查看</div>
         <van-cell-group class="group">
-            <van-field :label="$t('form.CompanyName')" label-width="110" v-model="form.Name" :disabled="!edit" />
-            <van-field :label="$t('form.ContactPerson')" label-width="110" v-model="form.ManName" :disabled="!edit" />
+            <van-field :label="$t('form.CompanyName')" label-width="110" :placeholder="$t('form.CompanyName')" v-model="form.Name" :disabled="!edit" />
+            <van-field :label="$t('form.ContactPerson')" label-width="110" :placeholder="$t('form.ContactPerson')" v-model="form.ManName" :disabled="!edit" />
+            <van-uploader class="upload" v-model="form.fileList" :after-read="afterRead" multiple :max-count="1" :deletable="edit" />
         </van-cell-group>
+
         <van-cell-group class="group">
             <h5>{{$t('form.Mobilephone')}}</h5>
-            <van-field :label="$t('form.CountryCode')" label-width="150" v-model="form.ManPhoneCountryCode" :disabled="!edit" />
-            <van-field :label="$t('form.Mobilephone')" v-model="form.ManPhone" :disabled="!edit" />
+            <van-field :label="$t('form.CountryCode')" label-width="150" :placeholder="$t('form.CountryCode')" v-model="form.ManPhoneCountryCode" :disabled="!edit" />
+            <van-field :label="$t('form.Mobilephone')" :placeholder="$t('form.Mobilephone')" v-model="form.ManPhone" :disabled="!edit" />
         </van-cell-group>
         <van-cell-group class="group">
-            <van-field :label="$t('form.WeChat')" v-model="form.ManWeChat" :disabled="!edit" />
-            <van-field :label="$t('form.Facebook')" v-model="form.ManFacebook" :disabled="!edit" />
-            <van-field :label="$t('form.Whatsapp')" v-model="form.ManWhatsapp" :disabled="!edit" />
-            <van-field :label="$t('form.Website')" v-model="form.Website" :disabled="!edit" />
-            <van-field :label="$t('form.CompanyDescription')" label-width="140" v-model="form.Description" :disabled="!edit" />
-            <van-field :label="$t('form.Summary')" label-width="130" v-model="form.Summary" :disabled="!edit" />
+            <h5>{{$t('form.ContactSoftware')}}</h5>
+            <van-field :label="$t('form.WeChat')" :placeholder="$t('form.WeChat')" v-model="form.ManWeChat" :disabled="!edit" />
+            <van-field :label="$t('form.Facebook')" :placeholder="$t('form.Facebook')" v-model="form.ManFacebook" :disabled="!edit" />
+            <van-field :label="$t('form.Whatsapp')" :placeholder="$t('form.Whatsapp')" v-model="form.ManWhatsapp" :disabled="!edit" />
+        </van-cell-group>
+        <van-cell-group class="group">
+            <van-field :label="$t('form.Website')" :placeholder="$t('form.Website')" v-model="form.Website" :disabled="!edit" />
+            <van-field :label="$t('form.CompanyDescription')" :placeholder="$t('form.CompanyDescription')" label-width="140" v-model="form.Description" :disabled="!edit" />
+            <van-field :label="$t('form.Summary')" :placeholder="$t('form.Summary')" label-width="130" v-model="form.Summary" :disabled="!edit" />
         </van-cell-group>
         <van-row class="actions" type="flex" gutter="20">
             <van-col span="24" v-if="!edit">
@@ -27,7 +32,7 @@
                 <van-button type="info" size="small" @click="onSubmit">{{$t('form.submit')}}</van-button>
             </van-col>
             <van-col span="12" v-if="edit">
-                <van-button type="warning" size="small" @click="onReset">{{$t('form.reset')}}</van-button>
+                <van-button type="warning" size="small" @click="onInit">{{$t('form.reset')}}</van-button>
             </van-col>
         </van-row>
         <van-row class="actions" type="flex" gutter="20" v-if="$route.query.id">
@@ -52,17 +57,15 @@ export default {
     data() {
         return {
             lan: Util.getsessionStorage('lang'),
-            edit:this.$route.query.id ? false : true,
-            copyData:{},
+            edit: this.$route.query.id ? false : true,
+            copyData: {},
             form: {
-                ExhiInfoArr: [],
-                NeedInvitation: '',
-                BoothArea: '',
+                fileList: [],
             },
         }
     },
     created() {
-        if(this.$route.query.id){
+        if (this.$route.query.id) {
             customRequest({
                 method: 'get',
                 url: '/B2BSupply/GetMyList',
@@ -74,38 +77,64 @@ export default {
                     IsCheck: this.$route.query.isCheck || ''
                 }
             }).then(result => {
-                if(result.data.length > 0){
+                if (result.data.length > 0) {
                     this.copyData = result.data[0]
-                    this.form = Util.getNewObj(this.copyData)
+                    this.onInit()
                 }
             })
+        } else {
+            this.showTips()
         }
     },
     methods: {
-        toggle(key,index) {
-            if(this.edit){
-                this.$refs[key][index].toggle();
+        showTips() {
+            if (this.lan == 'zh') {
+                this.$toast('请填写英文信息以供外商查看')
             }
         },
-        radioClick(key,value){
-            if(this.edit){
-                this.form[key] = value
-            }
+        afterRead(file) {
+            this.form.Img = file.content
+            // console.log(file);
         },
-        onEdit(value){
+        // toggle(key, index) {
+        //     if (this.edit) {
+        //         this.$refs[key][index].toggle();
+        //     }
+        // },
+        // radioClick(key, value) {
+        //     if (this.edit) {
+        //         this.form[key] = value
+        //     }
+        // },
+        onEdit(value) {
             this.edit = value
         },
         onSubmit() {
-            this.$refs['form'].validate((valid) => {
-                if (valid) {
-                    this.form['IsExhibitor'] = this.$store.state.app.userInfo.isExhibitor
-                    // this.form['Lan'] = 'en'
-                    // this.form.ExhiInfo = this.form.ExhiInfoArr.join(',')
-                }
-            });
+            if (!this.form.Img) {
+                this.$dialog.alert({message:this.$t('prompt.img')})
+                return
+            }
+            if (!this.form.ManWeChat && !this.form.ManFacebook && !this.form.ManWhatsapp) {
+                this.$dialog.alert({
+                    message:this.$t('prompt.Contact')
+                })
+                return false
+            }
+            if(this.$route.query.id){
+
+            }
+
         },
-        onReset() {
-            this.form = Util.getNewObj(this.copyData)
+        onInit() {
+            this.form = {
+                ...Util.getNewObj(this.copyData),
+                ...this.form
+            }
+            this.form.fileList.push({
+                name: this.form.Name,
+                url: this.form.Img,
+                uid: this.form.ID,
+            })
         },
     }
 }
@@ -120,9 +149,12 @@ export default {
         h5 {
             margin: 0 0 0 0.3rem;
         }
+        .upload {
+            margin: 0.2rem 0 0.1rem 0.3rem;
+        }
     }
     .actions {
-        margin-bottom: .2rem;
+        margin-bottom: 0.2rem;
         padding: 0 0.2rem;
 
         .van-button {
