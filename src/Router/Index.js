@@ -36,14 +36,6 @@ export default new Router({
             component: () => import('@/Views/report/reportDetails')
         },
         {
-            path: '/UserCenter/abroad',
-            name: 'abroad',
-            meta: {
-                auth: true,
-            },
-            component: () => import('@/Views/UserCenter/abroad')
-        },
-        {
             path: '/UserCenter/Account',
             name: 'Account',
             meta: {
@@ -51,33 +43,54 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/Account')
         },
-        // 英文参展 观展
         {
-            path: '/UserCenter/exhibitors',
-            name: 'exhibitors',
+            path: '/UserCenter/abroad',
+            name: 'abroad',
             meta: {
                 auth: true,
             },
-            component: () => import('@/Views/UserCenter/exhibitors/')
+            component: () => import('@/Views/UserCenter/exhibitor/abroad')
+        },
+        // 英文参展 观展
+        {
+            path: '/UserCenter/exhibitor',
+            name: 'exhibitor',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/exhibitor/')
+        },
+        {
+            path: '/UserCenter/companyAbroad',
+            name: 'companyAbroad',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Company/abroad')
+        },
+        {
+            path: '/UserCenter/company',
+            name: 'company',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Company/')
         },
         // {
-        //     path: '/UserCenter/putEnExhibitors',
-        //     name: 'userPutEnExhibitors',
+        //     path: '/UserCenter/addCompany',
+        //     name: 'userAddCompany',
         //     meta: {
         //         auth: true,
         //     },
-        //     component: () => {
-        //         // 区别尼日利亚版
-        //         if (Util.isNiCode())
-        //         {
-        //             return import('@/Views/UserCenter/OrderEn/putEnExhibitorsForNigeria')
-        //         }
-        //         else
-        //         {
-        //             return import('@/Views/UserCenter/OrderEn/putEnExhibitors')
-        //         }
-        //     }
+        //     component: () => import('@/Views/UserCenter/Company/addCompany')
         // },
+        // {
+        //     path: '/UserCenter/editCompany',
+        //     name: 'userEditCompany',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Company/editCompany')
         // {
         //     path: '/UserCenter/ExhibitorAdd',
         //     name: 'ExhibitorAdd',
@@ -205,44 +218,12 @@ export default new Router({
         //     component: () => import('@/Views/UserCenter/Product/editProduct')
         // },
         // {
-        //     path: '/UserCenter/editCompany',
-        //     name: 'userEditCompany',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Company/editCompany')
-        // },
-        // {
         //     path: '/UserCenter/addProduct',
         //     name: 'userAddProduct',
         //     meta: {
         //         auth: true,
         //     },
         //     component: () => import('@/Views/UserCenter/Product/addProduct')
-        // },
-        // {
-        //     path: '/UserCenter/addCompany',
-        //     name: 'userAddCompany',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Company/addCompany')
-        // },
-        // {
-        //     path: '/UserCenter/myCompany',
-        //     name: 'userMyCompany',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Company/myCompany')
-        // },
-        // {
-        //     path: '/UserCenter/iframe',
-        //     name: 'userIframe',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/iframe/iframe')
         // },
         // {
         //     path: '/UserCenter/myProduct',

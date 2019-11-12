@@ -6,7 +6,7 @@
                 {{$t('table.CompanyName')}}:{{item.Company}}
             </div>
             <div slot="footer">
-                <van-button type="warning" size="small" @click="edit(item)">{{$t('form.modify')}}</van-button>
+                <van-button type="warning" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>
             </div>
         </van-panel>
     </div>
@@ -26,7 +26,6 @@ export default {
     data() {
         return {
             tableData: [],
-            loading: true,
             lan: Util.getsessionStorage('lang'),
             isNiCode: Util.isNiCode(),
             form: {
@@ -41,14 +40,12 @@ export default {
             url: '/WebProduct/GetMyList',
         }).then(result => {
             this.tableData = result.data
-        }).finally(() => {
-            this.loading = false
         })
     },
     methods: {
         edit(item) {
             this.$router.push({
-                name:'exhibitors',
+                name:'exhibitor',
                 query:{
                     id:item.ID
                 }

@@ -82,7 +82,7 @@
                 <van-button type="warning" size="small" @click="onReset">{{$t('form.reset')}}</van-button>
             </van-col>
         </van-row>
-        <van-row class="actions" type="flex" gutter="20">
+        <van-row class="actions" type="flex" gutter="20" v-if="$route.query.id">
             <van-col span="24" v-if="edit">
                 <van-button type="primary" size="small" @click="onEdit(false)">{{$t('form.cancel')}}</van-button>
             </van-col>
@@ -103,7 +103,7 @@ export default {
     },
     data() {
         return {
-            edit:false,
+            edit:this.$route.query.id ? false : true,
             copyData:{},
             form: {
                 ExhiInfoArr: [],
