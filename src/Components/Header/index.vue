@@ -49,6 +49,8 @@ export default {
             this.popup.show = false
             this.$i18n.locale = item.value
             Util.setsessionStorage('lang',item.value)
+
+            this.headTitle = this.title || (this.$i18n.locale == 'zh' ? this.$store.state.app.skin.headTitleZh : this.$store.state.app.skin.headTitle)
         },
         onClickLeft() {
             // 自定义返回方法
