@@ -103,6 +103,9 @@ export default {
         '$i18n.locale'() {
             this.lan = this.$i18n.locale;
             Locale.use(this.$i18n.locale, messages[this.$i18n.locale]);
+
+            // 重新获取热点新闻
+            this.$refs['hotNews'].request()
         }
     },
 }
