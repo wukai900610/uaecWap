@@ -96,27 +96,6 @@ export default {
                 }
             })
         },
-        // 显示选择分类组件
-        showCategory() {
-            if (this.edit) {
-                this.category.show = true
-
-                // 选中默认数据
-                setTimeout(function() {
-                    // 设置选中
-                    this.$refs['category'].setIndexes(this.category.default.map(item => item.index))
-                }.bind(this), 0);
-            }
-        },
-        // 确定选中分类
-        selectCategory(value, indexs) {
-            this.category.value = value.toString()
-            // this.category.CatelogID = value[0]
-            // this.category.CatelogID2 = value[1]
-            // this.category.CatelogID3 = value[2]
-            // console.log(indexs);
-            this.category.show = false
-        },
         getCategory(level) {
             let that = this
             // 组合分类树
@@ -259,6 +238,28 @@ export default {
                 id: obj.children[allIndex[1]].children[allIndex[2]].ID,
                 index: allIndex[2]
             }]
+        },
+        // 显示选择分类组件
+        showCategory() {
+            if (this.edit) {
+                this.category.show = true
+
+                // 选中默认数据
+                setTimeout(function() {
+                    // 设置选中
+                    this.$refs['category'].setIndexes(this.category.default.map(item => item.index))
+                }.bind(this), 0);
+            }
+        },
+        // 确定选中分类
+        selectCategory(value, indexs) {
+            this.category.show = false
+            // 显示选中的值
+            this.category.value = value.toString()
+            // 后台接收的是选中值的id
+            this.form.CatelogID = this.category.data[indexs[0]].ID
+            this.form.CatelogID2 = this.category.data[indexs[0]].children[indexs[1]].ID
+            this.form.CatelogID3 = this.category.data[indexs[0]].children[indexs[1]].children[indexs[2]].ID
         },
         afterRead(file) {
             this.form.Img = file.content
