@@ -8,7 +8,7 @@
                 {{$t('table.CompanyName')}}:{{item.Name}}
             </div>
             <div slot="footer">
-                <van-button type="warning" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>
+                <van-button type="info" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>
                 <van-button type="danger" size="small" @click="del(item)">{{$t('form.delete')}}</van-button>
             </div>
         </van-panel>

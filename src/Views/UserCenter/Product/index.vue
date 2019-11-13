@@ -22,7 +22,7 @@
                 <van-button type="info" size="small" @click="onSubmit">{{$t('form.submit')}}</van-button>
             </van-col>
             <van-col span="12" v-if="edit">
-                <van-button type="warning" size="small" @click="onInit">{{$t('form.reset')}}</van-button>
+                <van-button type="warning" size="small" @click="onReset">{{$t('form.reset')}}</van-button>
             </van-col>
         </van-row>
         <van-row class="actions" type="flex" gutter="20" v-if="$route.query.id">
@@ -50,20 +50,11 @@ export default {
             edit: this.$route.query.id ? false : true,
             category: {
                 show: false,
-                value:'',
+                value: '',
                 data: [],
                 columns: [],
-                default:[{
-                    index:0
-                },{
-                    index:0
-                },{
-                    index:0
-                }]
             },
-            copyData: {},
             fileList: [],
-            value:'',
             form: {
                 Summary: '',
             },
@@ -71,12 +62,14 @@ export default {
     },
     created() {
         // 获取分类
-        this.getCategory().then(()=>{
+        this.getCategory().then(() => {
             if (this.$route.query.id) {
-                this.getData()
+                this.getData().then(() => {
+                    this.initCategory()
+                })
             } else {
                 this.showTips()
-                this.onInitCategory()
+                this.initCategory()
             }
         })
     },
@@ -87,8 +80,8 @@ export default {
                 this.$toast('请填写英文信息以供外商查看')
             }
         },
-        getData(){
-            customRequest({
+        getData() {
+            return customRequest({
                 method: 'get',
                 url: '/b2bproduct/get',
                 params: {
@@ -96,33 +89,32 @@ export default {
                 }
             }).then(result => {
                 if (result.data.length > 0) {
-                    this.copyData = result.data[0]
-                    this.onInit()
-                    this.onInitCategory()
+                    this.form = result.data[0]
+                    this.fileList = [{
+                        url: this.form.Img
+                    }]
                 }
             })
         },
         // 显示选择分类组件
         showCategory() {
-            if(this.edit){
+            if (this.edit) {
                 this.category.show = true
 
                 // 选中默认数据
-                setTimeout(function () {
+                setTimeout(function() {
                     // 设置选中
-                    this.$refs['category'].setColumnIndex(0,this.category.default[0].index)
-                    this.$refs['category'].setColumnIndex(1,this.category.default[1].index)
-                    this.$refs['category'].setColumnIndex(2,this.category.default[2].index)
+                    this.$refs['category'].setIndexes(this.category.default.map(item => item.index))
                 }.bind(this), 0);
             }
         },
         // 确定选中分类
-        selectCategory(value,indexs) {
+        selectCategory(value, indexs) {
             this.category.value = value.toString()
             // this.category.CatelogID = value[0]
             // this.category.CatelogID2 = value[1]
             // this.category.CatelogID3 = value[2]
-            console.log(indexs);
+            // console.log(indexs);
             this.category.show = false
         },
         getCategory(level) {
@@ -172,46 +164,64 @@ export default {
                 that.category.data = level1
             });
         },
-        onInitCategory(){
+        initCategory() {
             let level1Index = 0
             let level2Index = 0
-            if(this.$route.query.id){
-                // 初始化
-                this.category.default = []
-                this.category.data.map((item,index)=>{
-                    if(item.ID == this.form.CatelogID){
+            // 初始化变量
+            this.category.default = [{
+                    Name: '',
+                    id: '',
+                    index: 0
+                },
+                {
+                    Name: '',
+                    id: '',
+                    index: 0
+                },
+                {
+                    Name: '',
+                    id: '',
+                    index: 0
+                }
+            ]
+            this.category.value = ''
+            if (this.$route.query.id) {
+                this.category.data.map((item, index) => {
+                    if (item.ID == this.form.CatelogID) {
                         level1Index = index
-                        this.category.default.push({
-                            Name:item.Name,
-                            id:item.ID,
-                            index:index
-                        })
-                    }
-                    item.children.map((item2,index2)=>{
-                        if(item2.ID == this.form.CatelogID2){
-                            level2Index = index2
-                            this.category.default.push({
-                                Name:item2.Name,
-                                id:item2.ID,
-                                index:index2
-                            })
+                        this.category.default[0] = {
+                            Name: item.Name,
+                            id: item.ID,
+                            index: index
                         }
-                        item2.children.map((item3,index3)=>{
-                            if(item3.ID == this.form.CatelogID3){
-                                this.category.default.push({
-                                    Name:item3.Name,
-                                    id:item3.ID,
-                                    index:index3
-                                })
+                    }
+                    item.children.map((item2, index2) => {
+                        if (item2.ID == this.form.CatelogID2) {
+                            level2Index = index2
+                            this.category.default[1] = {
+                                Name: item2.Name,
+                                id: item2.ID,
+                                index: index2
+                            }
+                        }
+                        item2.children.map((item3, index3) => {
+                            if (item3.ID == this.form.CatelogID3) {
+                                this.category.default[2] = {
+                                    Name: item3.Name,
+                                    id: item3.ID,
+                                    index: index3
+                                }
                             }
                         })
                     })
                 })
-                this.category.value = this.category.default.map((item)=>{
+
+                this.category.value = this.category.default.map((item) => {
                     return item.Name
                 }).toString()
             }
 
+            // 初始化显示的菜单
             this.category.columns = [{
                 values: this.category.data.map(item => item.Name),
                 className: 'column1'
@@ -223,15 +233,32 @@ export default {
                 className: 'column3'
             }]
         },
-        onChange(picker, values, index) {//手动选择
+        onChange(picker, values, index) { //手动选择
             let selectIndex = picker.getColumnIndex(index)
             let allIndex = picker.getIndexes()
-            if (index == 0) {// 滚动第一列
+            if (index == 0) { // 滚动第一列
                 picker.setColumnValues(1, this.category.data[selectIndex].children.map(item => item.Name));
                 picker.setColumnValues(2, this.category.data[selectIndex].children[0].children.map(item => item.Name));
-            } else if (index == 1) {// 滚动第二列
+            } else if (index == 1) { // 滚动第二列
                 picker.setColumnValues(2, this.category.data[allIndex[0]].children[selectIndex].children.map(item => item.Name));
             }
+            // 重新获取最新indexes
+            allIndex = picker.getIndexes()
+            // 保存已改变的滑动结果
+            let obj = this.category.data[allIndex[0]]
+            this.category.default = [{
+                Name: obj.Name,
+                id: obj.ID,
+                index: allIndex[0]
+            }, {
+                Name: obj.children[allIndex[1]].Name,
+                id: obj.children[allIndex[1]].ID,
+                index: allIndex[1]
+            }, {
+                Name: obj.children[allIndex[1]].children[allIndex[2]].Name,
+                id: obj.children[allIndex[1]].children[allIndex[2]].ID,
+                index: allIndex[2]
+            }]
         },
         afterRead(file) {
             this.form.Img = file.content
@@ -259,37 +286,27 @@ export default {
                 })
                 return
             }
-            if (!this.form.ManWeChat && !this.form.ManFacebook && !this.form.ManWhatsapp) {
-                this.$dialog.alert({
-                    message: this.$t('prompt.Contact')
-                })
-                return false
-            }
-            if (this.$route.query.id) {
 
-            }
-
+            customRequest({
+                method: this.$route.query.id ? 'put' : 'post',
+                url: '/B2BProduct',
+                data: this.form
+            }).then(result => {
+                this.$router.back()
+            })
         },
-        onInit() {
-            this.form = {
-                Summary: '',
-                ...Util.getNewObj(this.copyData),
-            }
-
+        onReset() {
             if (this.$route.query.id) {
-                this.fileList = [{
-                    url: this.form.Img
-                }]
+                this.getData().then(() => {
+                    this.initCategory()
+                })
             } else {
+                this.form = {
+                    Summary: '',
+                }
                 this.fileList = []
-            }
-
-            // this.category.value = ''
-            // console.log(this.category.default);
-            if(this.$refs['category']){
-                this.$refs['category'].setColumnIndex(0,this.category.default[0].index)
-                this.$refs['category'].setColumnIndex(1,this.category.default[1].index)
-                this.$refs['category'].setColumnIndex(2,this.category.default[2].index)
+                this.showTips()
+                this.initCategory()
             }
         },
     }

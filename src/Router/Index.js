@@ -92,31 +92,6 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/product/')
         },
-
-        // {
-        //     path: '/UserCenter/addOffer',
-        //     name: 'userAddOffer',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Offer/addOffer')
-        // },
-        // {
-        //     path: '/UserCenter/myOffer',
-        //     name: 'userMyOffer',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Offer/myOffer')
-        // },
-        // {
-        //     path: '/UserCenter/editOffer',
-        //     name: 'userEditOffer',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Offer/editOffer')
-        // },
         // {
         //     path: '/UserCenter/ExhibitorAdd',
         //     name: 'ExhibitorAdd',
@@ -170,30 +145,6 @@ export default new Router({
         //         icon: 'form'
         //     },
         //     component: () => import('@/Views/UserCenter/Order/VisitorRules'),
-        // },
-        // {
-        //     path: '/UserCenter/ChangePassword',
-        //     name: 'ChangePassword',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/ChangePassword/Index')
-        // },
-        // {
-        //     path: '/UserCenter/ChangePhone',
-        //     name: 'ChangePhone',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/ChangePhone/Index')
-        // },
-        // {
-        //     path: '/UserCenter/ChangeEmail',
-        //     name: 'ChangeEmail',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/ChangeEmail/Index')
         // },
         // {
         //     path: '/UserCenter/outbox',
