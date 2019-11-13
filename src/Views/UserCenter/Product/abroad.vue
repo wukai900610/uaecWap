@@ -1,11 +1,13 @@
 <template>
-<Layout :title="$t('table.AllCompany')">
+<Layout :title="$t('table.AllProduct')">
     <div class="abroad">
-        <van-panel :title="lan == 'zh' ? item.Title : item.TitleEn" :desc="item.Description" v-for="item in tableData" :key="item.ID">
+        <van-panel :title="item.Title" v-for="item in tableData" :key="item.ID">
             <div class="info">
+                {{$t('table.ProductsCategory')}}:{{item.CategoryName}}
+                <br />
                 ID:{{item.ID}}
                 <br />
-                {{$t('table.CompanyName')}}:{{item.Name}}
+                {{$t('table.ProductName')}}:{{item.Name}}
             </div>
             <div slot="footer">
                 <van-button type="warning" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>
@@ -29,37 +31,29 @@ export default {
     data() {
         return {
             tableData: [],
-            lan: Util.getsessionStorage('lang'),
         }
     },
     created() {
         customRequest({
             method: 'get',
-            url: '/B2BSupply/GetMyList',
+            url: '/B2BProduct/GetMyList',
             params: {
                 page: 1,
                 size: 10,
                 Title: this.$route.query.title || '',
                 ID: this.$route.query.id || '',
-                IsCheck: this.$route.query.isCheck || ''
+                IsCheck: this.$route.query.isCheck || '',
+                CatelogID: this.$route.query.catelogID || '',
+                Name: this.$route.query.name || ''
             }
         }).then(result => {
             this.tableData = result.data
         })
     },
     methods: {
-        // getStatus(data) {
-        //     if (data.IsCheck == 1) {
-        //         return this.$t('table.pass')
-        //     } else if (data.IsCheck == 0) {
-        //         return this.$t('table.confirmed')
-        //     } else if (data.IsCheck == 7) {
-        //         return this.$t('table.Notpass')
-        //     }
-        // },
         edit(item) {
             this.$router.push({
-                name: 'company',
+                name: 'products',
                 query: {
                     id: item.ID
                 }
@@ -67,11 +61,11 @@ export default {
         },
         del(data) {
             this.$dialog.confirm({
-                message: this.$t('prompt.deleteTips')
+                message: this.$t('prompt.delete')
             }).then(()=>{
                 customRequest({
                     method: 'delete',
-                    url: '/B2BSupply/Delete',
+                    url: '/B2BProduct/Delete',
                     params:{
                         id: data.ID
                     }

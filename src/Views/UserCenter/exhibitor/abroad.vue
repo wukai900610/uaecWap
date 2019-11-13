@@ -27,11 +27,7 @@ export default {
         return {
             tableData: [],
             lan: Util.getsessionStorage('lang'),
-            isNiCode: Util.isNiCode(),
-            form: {
-                username: '',
-                password: '',
-            }
+            // isNiCode: Util.isNiCode(),
         }
     },
     created() {

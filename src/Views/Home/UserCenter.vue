@@ -69,7 +69,7 @@ export default {
             isLogin: Util.getsessionStorage('token') || '',
             userInfo: Util.getsessionStorage('userInfo') || {},
             defaultUser: require('../../../static/image/defaultUser.png'),
-            activeNames: 0,
+            activeNames: '',
             login: {
                 status: ''
             },

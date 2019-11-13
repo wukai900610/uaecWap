@@ -24,11 +24,11 @@ export default {
                     name: 'Manage Products',
                     children: [{
                             name: 'All Products',
-                            url: '/UserCenter/myProduct'
+                            url: '/UserCenter/productsAbroad'
                         },
                         {
                             name: 'Add Product',
-                            url: '/UserCenter/AddProduct'
+                            url: '/UserCenter/products'
                         }
                     ]
                 },

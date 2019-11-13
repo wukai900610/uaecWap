@@ -76,21 +76,47 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/Company/')
         },
+        {
+            path: '/UserCenter/productsAbroad',
+            name: 'productsAbroad',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Product/abroad')
+        },
+        {
+            path: '/UserCenter/products',
+            name: 'products',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/product/')
+        },
+
         // {
-        //     path: '/UserCenter/addCompany',
-        //     name: 'userAddCompany',
+        //     path: '/UserCenter/addOffer',
+        //     name: 'userAddOffer',
         //     meta: {
         //         auth: true,
         //     },
-        //     component: () => import('@/Views/UserCenter/Company/addCompany')
+        //     component: () => import('@/Views/UserCenter/Offer/addOffer')
         // },
         // {
-        //     path: '/UserCenter/editCompany',
-        //     name: 'userEditCompany',
+        //     path: '/UserCenter/myOffer',
+        //     name: 'userMyOffer',
         //     meta: {
         //         auth: true,
         //     },
-        //     component: () => import('@/Views/UserCenter/Company/editCompany')
+        //     component: () => import('@/Views/UserCenter/Offer/myOffer')
+        // },
+        // {
+        //     path: '/UserCenter/editOffer',
+        //     name: 'userEditOffer',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Offer/editOffer')
+        // },
         // {
         //     path: '/UserCenter/ExhibitorAdd',
         //     name: 'ExhibitorAdd',
@@ -208,54 +234,6 @@ export default new Router({
         //         auth: true,
         //     },
         //     component: () => import('@/Views/UserCenter/Message/seeMessage')
-        // },
-        // {
-        //     path: '/UserCenter/editProduct',
-        //     name: 'userEditProduct',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Product/editProduct')
-        // },
-        // {
-        //     path: '/UserCenter/addProduct',
-        //     name: 'userAddProduct',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Product/addProduct')
-        // },
-        // {
-        //     path: '/UserCenter/myProduct',
-        //     name: 'userMyProduct',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Product/myProduct')
-        // },
-        // {
-        //     path: '/UserCenter/addOffer',
-        //     name: 'userAddOffer',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Offer/addOffer')
-        // },
-        // {
-        //     path: '/UserCenter/myOffer',
-        //     name: 'userMyOffer',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Offer/myOffer')
-        // },
-        // {
-        //     path: '/UserCenter/editOffer',
-        //     name: 'userEditOffer',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Offer/editOffer')
         // },
         // {
         //     path: '/UserCenter/pendingInvitation',
