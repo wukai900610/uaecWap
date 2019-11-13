@@ -92,6 +92,22 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/product/')
         },
+        {
+            path: '/UserCenter/offersAbroad',
+            name: 'offersAbroad',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/offer/abroad')
+        },
+        {
+            path: '/UserCenter/offers',
+            name: 'offers',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/offer/')
+        },
         // {
         //     path: '/UserCenter/ExhibitorAdd',
         //     name: 'ExhibitorAdd',

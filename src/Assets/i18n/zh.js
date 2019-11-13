@@ -36,11 +36,11 @@ export default {
                     name: '商机管理',
                     children: [{
                             name: '全部商机',
-                            url: '/UserCenter/myOffer'
+                            url: '/UserCenter/offersAbroad'
                         },
                         {
                             name: '添加商机',
-                            url: '/UserCenter/addOffer'
+                            url: '/UserCenter/offers'
                         }
                     ]
                 },

@@ -36,11 +36,11 @@ export default {
                     name: 'Manage Offers',
                     children: [{
                             name: 'All Offers',
-                            url: '/UserCenter/myOffer'
+                            url: '/UserCenter/offersAbroad'
                         },
                         {
                             name: 'Add Offer',
-                            url: '/UserCenter/AddOffer'
+                            url: '/UserCenter/offers'
                         }
                     ]
                 },
