@@ -34,7 +34,6 @@ export default {
         let placeholder1 = '请输入手机号'
         let placeholder2 = '请输入密码'
         return {
-            // logo:require(this.$store.getters.skin.logo),
             logo:this.$store.getters.skin.logo,
             placeholder1: placeholder1,
             placeholder2: placeholder2,
@@ -45,35 +44,12 @@ export default {
 				placeholder2: placeholder2,
                 loading: ''
             },
-            // formRules: {
-            //     LoginName: [{
-            //         required: true,
-            //         message: this.$t('text.input') + 'Email' + this.$t('text.here'),
-            //         trigger: 'blur'
-            //     }, {
-            //         type: 'email',
-            //         message: 'Invalid email'
-            //     }],
-            //     LoginPass: [{
-            //         required: true,
-            //         message: this.$t('text.input') + this.$t('form.LoginPass') + this.$t('text.here'),
-            //         trigger: 'blur'
-            //     }]
-            // },
         }
     },
     created() {
         let _this = this;
     },
     methods: {
-        // isLogin() {
-		// 	let auth = Util.getsessionStorage('auth')
-		// 	if (auth) {
-		// 		this.$router.push({
-		// 			'name': 'UserCenter'
-		// 		})
-		// 	}
-		// },
 		blurFocus(type) {
 			if (type == 'LoginName') {
 				this.form.placeholder1 = this.form.LoginName == '' ? this.placeholder1 : ''
@@ -98,11 +74,6 @@ export default {
             }).finally(() => {
                 this.form.loading = ''
             })
-            // this.$refs['form'].validate((valid) => {
-            //     if (valid) {
-            //
-            //     }
-            // });
         }
     },
 }
@@ -124,10 +95,8 @@ export default {
 
         .loginLogo {
             height: 3.7rem;
-            // background: url("../../../static/image/loginLogo.png") center no-repeat;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 2rem;
         }
         .loginArea {
             .loginInputBox {
