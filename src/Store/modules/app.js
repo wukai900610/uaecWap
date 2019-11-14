@@ -2,7 +2,7 @@ import Util from "@/assets/service/customUtil";
 import {
     theme
 }
-from "../../assets/api/colorCheck";
+from "@/assets/colorCheck";
 
 const app = {
     state: {
