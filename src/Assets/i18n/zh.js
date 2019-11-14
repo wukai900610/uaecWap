@@ -92,7 +92,7 @@ export default {
             placeholder:'请输入搜索关键词',
             search:'搜索'
         },
-        Mine: 'My',
+        Mine: '用户中心',
         // viewMore:'立即登录，查看更多信息！',
         Login: '请登录',
         ViewMore: '查看更多',

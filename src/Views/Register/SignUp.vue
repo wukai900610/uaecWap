@@ -23,7 +23,7 @@
             </el-form-item>
         </el-form>
         <div class="bottom">
-            <router-link :to="{'name': 'SignIn'}">登录</router-link>
+            <router-link :to="{'name': 'Login'}">登录</router-link>
             <router-link :to="{'name': 'Forgot'}">忘记密码</router-link>
         </div>
     </div>

@@ -79,7 +79,7 @@ export default {
     methods: {
         toLogin() {
             this.$router.push({
-                name: 'SignIn'
+                name: 'Login'
             })
         },
         logout() {
@@ -90,7 +90,7 @@ export default {
             }).then(result => {
                 this.$store.dispatch('out_login').then(() => {
                     this.$router.push({
-                        name: 'SignIn'
+                        name: 'Login'
                     })
                 })
             }).finally(() => {

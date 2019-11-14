@@ -1,7 +1,7 @@
 <template>
     <div class="login">
     	<div class="loginBox">
-    		<h1 class="loginLogo"></h1>
+    		<h1 class="loginLogo" :style="'background-image:url('+logo+')'"></h1>
     		<div class="loginArea">
     			<ul class="loginInputBox">
     				<li class="van-hairline--bottom">
@@ -18,9 +18,9 @@
     	</div>
 
     	<div class="other">
-    		<router-link class="FindPass" :to="{'name': 'Forgot'}">Forget LoginPass</router-link>
+    		<router-link class="FindPass" :to="{'name': 'Forgot'}">忘记密码</router-link>
     		|
-    		<router-link class="Register" :to="{'name': 'SignUp'}">Register</router-link>
+    		<router-link class="Register" :to="{'name': 'SignUp'}">注册</router-link>
     	</div>
     </div>
 </template>
@@ -34,6 +34,8 @@ export default {
         let placeholder1 = '请输入手机号'
         let placeholder2 = '请输入密码'
         return {
+            // logo:require(this.$store.getters.skin.logo),
+            logo:this.$store.getters.skin.logo,
             placeholder1: placeholder1,
             placeholder2: placeholder2,
             form: {
@@ -80,6 +82,12 @@ export default {
 			}
 		},
         submit() {
+            let ereg = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
+            if (!ereg.test(this.form.LoginName)) {
+                this.$toast('请输入正确的手机号')
+                return false
+            }
+
             this.form.loading = 'loading'
             customRequest({
                 method: 'post',
@@ -116,7 +124,9 @@ export default {
 
         .loginLogo {
             height: 3.7rem;
-            background: url("../../../static/image/loginLogo.png") center no-repeat;
+            // background: url("../../../static/image/loginLogo.png") center no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
             background-size: 2rem;
         }
         .loginArea {

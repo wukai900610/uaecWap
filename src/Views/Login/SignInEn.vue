@@ -80,6 +80,12 @@ export default {
 			}
 		},
         submit() {
+            let ereg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+            if (!ereg.test(this.form.LoginName)) {
+                this.$toast('Please Enter Correct Email')
+                return false
+            }
+
             this.form.loading = 'loading'
             customRequest({
                 method: 'post',
@@ -87,8 +93,7 @@ export default {
                 data: this.form
             }).then(result => {
                 if (result.data.User.EmailIsValid == 0) {
-                    Dialog.alert({
-                        // title: 'The mailbox is not verified and cannot be logged in.',
+                    this.$dialog.alert({
                         message: 'The mailbox is not verified and cannot be logged in.'
                     })
                     return false;

@@ -242,8 +242,8 @@ export default new Router({
         // },
         // 登陆
         {
-            path: '/SignIn',
-            name: 'SignIn',
+            path: '/Login',
+            name: 'Login',
             component: () => import('@/Views/Login'),
         },
         // 注册
@@ -303,7 +303,6 @@ export default new Router({
                     path: 'Invitation',
                     name: 'MatchupExpo_invitation',
                     meta: {
-                        title: '邀约填写3.7.1.1',
                         auth: true,
                     },
                     component: () => import('@/Views/MatchupExpo/Invitation/index'),
@@ -312,7 +311,6 @@ export default new Router({
                     path: 'contact',
                     name: 'MatchupExpo_contact',
                     meta: {
-                        title: '查看活动3.9.1.2',
                         auth: true,
                     },
                     component: () => import('@/Views/MatchupExpo/contact/index'),

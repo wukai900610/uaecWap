@@ -117,7 +117,7 @@ export default {
                         //
                         //     Util.doLogin(result)
                         // }).catch((err) => {
-                        //     _this.$router.push({name:'SignIn'})
+                        //     _this.$router.push({name:'Login'})
                         // })
                     }).catch(() => {
                         _this.form.status = 'error'

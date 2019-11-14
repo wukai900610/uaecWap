@@ -17,7 +17,7 @@
             </el-form-item>
         </el-form>
         <div class="bottom">
-            <router-link :to="{'name': 'SignIn'}">Sign In</router-link>
+            <router-link :to="{'name': 'Login'}">Sign In</router-link>
             <router-link :to="{'name': 'Forgot'}">Forget Password</router-link>
         </div>
     </div>

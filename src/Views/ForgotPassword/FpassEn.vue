@@ -111,7 +111,7 @@ export default {
                             })
                             .then(_ => {
                                 this.$router.push({
-                                    name:'SignIn'
+                                    name:'Login'
                                 })
                             })
                     }).finally(() => {
