@@ -1,5 +1,5 @@
 <template>
-<Layout :title="$t('table.InBox')">
+<Layout :title="$t('table.SentBox')">
     <div class="abroad">
         <van-panel :title="item.Subject" v-for="item in tableData" :key="item.ID">
             <div class="info">
@@ -11,7 +11,7 @@
                 {{new Date(item.AddTime).format('yyyy-MM-dd hh:mm')}}
             </div>
             <div slot="footer" style=" display:flex;justify-content: flex-end;">
-                <van-button v-if="item.IsRead != 2" type="info" size="small" @click="replay(item)">{{$t('table.Replay')}}</van-button>
+                <van-button v-if="item.IsRead != 2" type="info" size="small" @click="view(item)">{{$t('table.See')}}</van-button>
             </div>
         </van-panel>
     </div>
@@ -36,7 +36,7 @@ export default {
     created() {
         customRequest({
             method: 'get',
-            url: '/B2BMessage/GetFromList',
+            url: '/B2BMessage/GetToList',
             params: {
                 page: 1,
                 size: 10,
@@ -67,14 +67,12 @@ export default {
                 }
             }
         },
-        replay(item) {
+        view(item) {
             this.$router.push({
-                name: 'replyMessage',
+                name: 'contactLetter',
                 query: {
                     id: item.ID,
                     type: 'from',
-                    companyName: item.SupplyName,
-                    To: item.UserFrom,
                 }
             })
         },

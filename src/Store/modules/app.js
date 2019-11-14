@@ -1975,6 +1975,9 @@ const app = {
             chooseen: 'please choose'
         },
         page:{
+            userCenter:{
+                collapseIndex:''
+            },
             searchList:{
                 cache:false,
                 data: [],
@@ -2026,6 +2029,9 @@ const app = {
         },
         searchListFinished: (state) => {
             state.page.searchList.finished = true
+        },
+        setActiveCollapse: (state,data) => {
+            state.page.userCenter.collapseIndex = data
         },
     },
     actions: {

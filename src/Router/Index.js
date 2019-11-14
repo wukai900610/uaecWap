@@ -43,6 +43,7 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/Account')
         },
+        // 展会管理
         {
             path: '/UserCenter/abroad',
             name: 'abroad',
@@ -60,6 +61,7 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/exhibitor/')
         },
+        // 公司管理
         {
             path: '/UserCenter/companyAbroad',
             name: 'companyAbroad',
@@ -76,6 +78,7 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/Company/')
         },
+        // 产品管理
         {
             path: '/UserCenter/productsAbroad',
             name: 'productsAbroad',
@@ -92,6 +95,7 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/product/')
         },
+        // 商机管理
         {
             path: '/UserCenter/offersAbroad',
             name: 'offersAbroad',
@@ -108,6 +112,80 @@ export default new Router({
             },
             component: () => import('@/Views/UserCenter/offer/')
         },
+        // 消息管理
+        {
+            path: '/UserCenter/sentBox',
+            name: 'sentBox',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Message/sentBox')
+        },
+        {
+            path: '/UserCenter/inbox',
+            name: 'inbox',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Message/inbox')
+        },
+        {
+            path: '/UserCenter/contactLetter',
+            name: 'contactLetter',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Message/contactLetter')
+        },
+        {
+            path: '/UserCenter/replyMessage',
+            name: 'replyMessage',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Message/replyMessage')
+        },
+        // 邀约管理
+        // {
+        //     path: '/UserCenter/pendingInvitation',
+        //     name: 'userPendingInvitation',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Invitation/pendingInvitation')
+        // },
+        // {
+        //     path: '/UserCenter/recoveredInvitation',
+        //     name: 'userRecoveredInvitation',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Invitation/recoveredInvitation')
+        // },
+        // {
+        //     path: '/UserCenter/activeInvitation',
+        //     name: 'userActiveInvitation',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Invitation/activeInvitation')
+        // },
+        // {
+        //     path: '/UserCenter/seeInvitation',
+        //     name: 'userSeeInvitation',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Invitation/seeInvitation')
+        // },
+        // {
+        //     path: '/UserCenter/replyInvitation',
+        //     name: 'userReplyInvitation',
+        //     meta: {
+        //         auth: true,
+        //     },
+        //     component: () => import('@/Views/UserCenter/Invitation/replyInvitation')
+        // },
         // {
         //     path: '/UserCenter/ExhibitorAdd',
         //     name: 'ExhibitorAdd',
@@ -161,87 +239,6 @@ export default new Router({
         //         icon: 'form'
         //     },
         //     component: () => import('@/Views/UserCenter/Order/VisitorRules'),
-        // },
-        // {
-        //     path: '/UserCenter/outbox',
-        //     name: 'userOutbox',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Message/outbox')
-        // },
-        // {
-        //     path: '/UserCenter/inbox',
-        //     name: 'userInbox',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Message/inbox')
-        // },
-        // {
-        //     path: '/UserCenter/contactLetter',
-        //     name: 'userContactLetter',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Message/contactLetter')
-        // },
-        // {
-        //     path: '/UserCenter/replyMessage',
-        //     name: 'userReplyMessage',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Message/replyMessage')
-        // },
-        // {
-        //     path: '/UserCenter/seeMessage',
-        //     name: 'userSeeMessage',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Message/seeMessage')
-        // },
-        // {
-        //     path: '/UserCenter/pendingInvitation',
-        //     name: 'userPendingInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/pendingInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/recoveredInvitation',
-        //     name: 'userRecoveredInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/recoveredInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/activeInvitation',
-        //     name: 'userActiveInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/activeInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/seeInvitation',
-        //     name: 'userSeeInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/seeInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/replyInvitation',
-        //     name: 'userReplyInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/replyInvitation')
-        // },
         // },
         // 登陆
         {

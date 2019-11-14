@@ -30,8 +30,7 @@
                     </div>
                 </template>
             </van-cell>
-
-            <van-collapse v-for="(item, index) in $t('userCenterMenu')[1].children" :key="index" accordion v-model="activeNames">
+            <van-collapse v-for="(item, index) in $t('userCenterMenu')[1].children" :key="index" accordion v-model="$store.state.app.page.userCenter.collapseIndex" @change="change">
                 <van-collapse-item :title="item.name" :name="index">
                     <ul class="menus" v-if="item.children" style="margin-left:20px;">
                         <li v-for="(item2, index2) in item.children" :key="index2">
@@ -69,7 +68,6 @@ export default {
             isLogin: Util.getsessionStorage('token') || '',
             userInfo: Util.getsessionStorage('userInfo') || {},
             defaultUser: require('../../../static/image/defaultUser.png'),
-            activeNames: '',
             login: {
                 status: ''
             },
@@ -98,6 +96,9 @@ export default {
             }).finally(() => {
                 this.login.status = ''
             })
+        },
+        change(index){
+            this.$store.commit('setActiveCollapse',index)
         }
     },
     mounted () {},

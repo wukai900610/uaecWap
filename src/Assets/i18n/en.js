@@ -64,7 +64,7 @@ export default {
                     name: 'Manage Inquiries',
                     children: [{
                             name: 'Sent Box',
-                            url: '/UserCenter/outbox'
+                            url: '/UserCenter/sentbox'
                         },
                         {
                             name: 'Inbox',

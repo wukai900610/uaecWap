@@ -64,7 +64,7 @@ export default {
                     name: '联系信管理',
                     children: [{
                             name: '发件箱',
-                            url: '/UserCenter/outbox'
+                            url: '/UserCenter/sentbox'
                         },
                         {
                             name: '收件箱',
