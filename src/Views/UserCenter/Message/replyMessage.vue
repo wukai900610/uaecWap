@@ -1,18 +1,26 @@
 <template>
 <Layout :title="$t('table.SentBox')">
     <div class="abroad">
-        <van-panel class="letter" :title="'['+(viewData.length-index)+']'+item.Subject" v-for="(item,index) in viewData" :key="item.ID">
+        <van-panel class="letter" :title="'['+(index+1)+']'+ $t('table.Subject') + ':' + item.Subject" v-for="(item,index) in viewData" :key="item.ID">
             <div class="info">
-                {{$t('table.FromCompany')}}:{{item.SupplyNameFrom}}
-                <br />
-                {{new Date(item.AddTime).format('yyyy-MM-dd hh:mm')}}
-                <p>{{$t('table.From')}}:{{item.ManFirstNameFrom+item.ManLastNameFrom}}</p>
-                <p v-html="$t('table.Content')+':'+item.Message">Dear Sir,</p>
+                <p>{{$t('table.FormR')}}:{{item.SupplyNameFrom}}</p>
+                <!-- <p>{{$t('table.ToR')}}:{{item.SupplyNameTo}}</p> -->
+                <p>{{$t('table.readTime')}}: {{item.ReadTime | dateTime}}</p>
+                <p>{{$t('table.Date')}}: {{item.AddTime | dateTime}}</p>
                 <van-divider />
-                <p>{{$t('table.ToCompany')+':'+item.SupplyNameTo}}</p>
-                <p>{{$t('table.ToUser')}}:{{item.ManFirstNameTo+item.ManLastNameTo}}</p>
+                <p>{{$t('table.Content')}}: {{item.Message | dateTime}}</p>
             </div>
         </van-panel>
+        <van-cell-group>
+            <van-field v-model="form.Subject" :label="$t('table.Subject')" :placeholder="$t('table.Subject')" />
+            <van-field v-model="form.Message" rows="3" autosize :label="$t('table.Content')" type="textarea" maxlength="50" :placeholder="$t('table.Content')" show-word-limit />
+
+            <van-row class="actions" type="flex" gutter="20">
+                <van-col span="24">
+                    <van-button class="largeCustomBtn" type="info" size="large" @click="onSubmit()">{{$t('form.Submit')}}</van-button>
+                </van-col>
+            </van-row>
+        </van-cell-group>
     </div>
 </Layout>
 </template>
@@ -29,6 +37,10 @@ export default {
     },
     data() {
         return {
+            form: {
+                Subject: '',
+                Message: '',
+            },
             viewData: []
         }
     },
@@ -42,9 +54,40 @@ export default {
             }
         }).then(result => {
             this.viewData = result.data
+
+            // 标记消息已读
+            customRequest({
+                method: 'put',
+                url: '/B2BMessage',
+                data: {
+                    id: this.$route.query.id,
+                    IsRead: 1
+                }
+            })
         })
     },
     methods: {
+        onSubmit(){
+            this.form.ID = this.$route.query.id
+            this.form.UserTo = this.$route.query.To
+            customRequest({
+                method: 'post',
+                url: '/B2BMessage',
+                data: this.form
+            }).then(result => {
+                // 重置消息未读
+                customRequest({
+                    method: 'put',
+                    url: '/B2BMessage',
+                    data: {
+                        id: this.$route.query.id,
+                        IsRead: 2
+                    }
+                }).then(result => {
+                    this.$router.back()
+                })
+            })
+        }
     }
 }
 </script>
