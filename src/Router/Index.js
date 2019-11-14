@@ -146,46 +146,46 @@ export default new Router({
             component: () => import('@/Views/UserCenter/Message/replyMessage')
         },
         // 邀约管理
-        // {
-        //     path: '/UserCenter/pendingInvitation',
-        //     name: 'userPendingInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/pendingInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/recoveredInvitation',
-        //     name: 'userRecoveredInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/recoveredInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/activeInvitation',
-        //     name: 'userActiveInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/activeInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/seeInvitation',
-        //     name: 'userSeeInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/seeInvitation')
-        // },
-        // {
-        //     path: '/UserCenter/replyInvitation',
-        //     name: 'userReplyInvitation',
-        //     meta: {
-        //         auth: true,
-        //     },
-        //     component: () => import('@/Views/UserCenter/Invitation/replyInvitation')
-        // },
+        {
+            path: '/UserCenter/pendingInvitation',
+            name: 'pendingInvitation',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Invitation/pendingInvitation')
+        },
+        {
+            path: '/UserCenter/replyInvitation',
+            name: 'replyInvitation',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Invitation/replyInvitation')
+        },
+        {
+            path: '/UserCenter/recoveredInvitation',
+            name: 'recoveredInvitation',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Invitation/recoveredInvitation')
+        },
+        {
+            path: '/UserCenter/activeInvitation',
+            name: 'activeInvitation',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Invitation/activeInvitation')
+        },
+        {
+            path: '/UserCenter/seeInvitation',
+            name: 'seeInvitation',
+            meta: {
+                auth: true,
+            },
+            component: () => import('@/Views/UserCenter/Invitation/seeInvitation')
+        },
         // {
         //     path: '/UserCenter/ExhibitorAdd',
         //     name: 'ExhibitorAdd',

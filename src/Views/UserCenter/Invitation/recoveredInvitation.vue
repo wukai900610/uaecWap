@@ -1,140 +1,72 @@
 <template>
-<div class="user-myProduct">
-    <h2>{{$t('tabel.Replied')}}</h2>
-    <div>
-        <el-form ref="form" :model="form" label-width="130px">
-            <el-form-item :label="$t('tabel.Fair')" v-if="lan == 'zh'">
-                <el-input v-model="form.Title" :placeholder="$t('text.input')+ $t('tabel.Fair')+$t('text.here')"></el-input>
-            </el-form-item>
-            <el-form-item :label="$t('tabel.CompanyName')">
-                <el-input v-model="form.ID" :placeholder="$t('text.input')+ $t('tabel.CompanyName')+$t('text.here')"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="nextSearch">Search</el-button>
-            </el-form-item>
-        </el-form>
+<Layout :title="$t('table.Replied')">
+    <div class="abroad">
+        <van-panel class="abroadItems" :title="item.Subject" v-for="item in tableData" :key="item.ID">
+            <div class="info">
+                <p>ID:{{item.ID}}</p>
+                <p v-if="item.SupplyName">{{$t('table.CompanyName')}}:{{item.SupplyName}}</p>
+                {{$t('table.Date')}}:{{new Date(item.ReplayTime).format('yyyy-MM-dd hh:mm')}}
+            </div>
+            <div slot="footer" style=" display:flex;justify-content: flex-end;">
+                <van-button type="info" size="small" @click="view(item)">{{$t('table.See')}}</van-button>
+            </div>
+        </van-panel>
     </div>
-    <el-table v-loading="loading" :data="tableData">
-        <template slot="empty">
-            {{$t('tabel.Nodata')}}
-        </template>
-        <el-table-column type="index" :label="$t('tabel.Row')" width="60">
-        </el-table-column>
-        <el-table-column :label="$t('tabel.Fair')" width="">
-            <template slot-scope="scope">
-                {{scope.row.Title}}
-            </template>
-        </el-table-column>
-        <el-table-column :label="$t('tabel.Date')" width="">
-            <template slot-scope="scope">
-                <span>{{scope.row.ReplayTime | dateTime}}</span>
-            </template>
-        </el-table-column>
-        <el-table-column :label="$t('tabel.Subject')" width="">
-            <template slot-scope="scope">
-                {{scope.row.Subject}}
-            </template>
-        </el-table-column>
-        <el-table-column fixed="right" :label="$t('tabel.Action')" width="100">
-            <template slot-scope="scope">
-                <el-button @click="seeData(scope.row)" type="text" size="small">{{$t('tabel.See')}}</el-button>
-            </template>
-        </el-table-column>
-    </el-table>
-    <div class="page-footer">
-        <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="size" :current-page.sync="page" :total="pageCount">
-        </el-pagination>
-    </div>
-</div>
+</Layout>
 </template>
 
 <script>
-import {
-    B2BFromMeet
-} from "@/assets/api/api";
+import customRequest from "@/assets/service/customRequest";
 import Util from "@/assets/service/customUtil";
 
+import Layout from "@/components/Layout";
+
 export default {
+    components: {
+        Layout,
+    },
     data() {
         return {
-            form: {},
             tableData: [],
-            page: Number(this.$route.query.page) || 1,
-            size: 10,
-            pageCount: 0,
-            loading: true
         }
     },
     created() {
-        this.lan = Util.getsessionStorage('lang')
-
-        B2BFromMeet({
-                page: this.page,
-                size: this.size,
+        customRequest({
+            method: 'get',
+            url: '/B2BMeet/GetFromList',
+            params: {
+                page: 1,
+                size: 10,
                 Title: this.$route.query.title || '',
                 SupplyName: this.$route.query.supplyName || '',
                 IsReplay: 1
-            })
-            .then(result => {
-                console.log(result)
-                this.tableData = result.data
-                this.pageCount = result.count
-                this.page = Number(this.$route.query.page)
-                this.loading = false
-            })
+            }
+        }).then(result => {
+            this.tableData = result.data
+        })
     },
     methods: {
-        seeData(item) {
-            this.$router.push('/user/seeInvitation?id=' + item.ID + '&type=from')
+        view(item) {
+            this.$router.push({
+                name: 'seeInvitation',
+                query: {
+                    id: item.ID,
+                    type: 'from',
+                }
+            })
         },
-        nextSearch() {
-            this.$router.push('/user/recoveredInvitation?title=' + (this.form.Title || '') + '&supplyName=' + (this.form.SupplyName || ''))
-        },
-        handleCurrentChange(val) {
-            this.$router.push('/user/recoveredInvitation?title=' + (this.form.Title || '') + '&supplyName=' + (this.form.SupplyName || '') + '&page=' + val)
-        }
     },
-    watch: {
-        '$route'() {
-            this.loading = true
-            B2BFromMeet({
-                    page: Number(this.$route.query.page),
-                    size: this.size,
-                    Title: this.$route.query.title || '',
-                    SupplyName: this.$route.query.supplyName || '',
-                    IsReplay: 1
-                })
-                .then(result => {
-                    console.log(result)
-                    this.tableData = result.data
-                    this.page = Number(this.$route.query.page)
-                    this.pageCount = result.count
-                    this.loading = false
-                })
-        }
-    }
 }
 </script>
 
 <style scoped lang="scss">
-.user-myProduct {
-    margin: 5px;
-    h2 {
-        text-align: center;
-        background: #fff;
-        width: 100%;
-        line-height: 60px;
-        margin: 5px 0;
+.abroad {
+    .abroadItems {
+        margin-bottom: 0.2rem;
     }
-    .el-form {
-        width: 100%;
-        background: rgba(255,255,255,1);
-        overflow: hidden;
-        .el-form-item {
-            width: calc(33.333% - 20px);
-            float: left;
-            margin: 10px;
-        }
+    .info {
+        padding: 0.1rem 0.25rem;
+        font-size: 0.22rem;
     }
 }
 </style>

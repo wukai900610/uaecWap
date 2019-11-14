@@ -1,17 +1,17 @@
 <template>
-<Layout :title="$t($route.query.id ? 'table.EditProduct' : 'table.AddProduct')">
+<Layout :title="$t($route.query.id ? 'table.EditOffer' : 'table.AddOffer')">
     <div class="company">
         <div v-if="lan=='zh'">请填写英文信息以供外商查看</div>
         <van-cell-group class="group">
-            <van-field :label="$t('form.ProductName')" label-width="110" :placeholder="$t('form.ProductName')" v-model="form.Name" :disabled="!edit" />
+            <van-field :label="$t('form.OfferName')" label-width="110" :placeholder="$t('form.OfferName')" v-model="form.Name" :disabled="!edit" />
 
-            <van-field :label="$t('form.ProductsCategory')" label-width="130" :value="category.value" readonly clickable :placeholder="$t('form.ProductsCategory')" @click="showCategory" right-icon="arrow" />
+            <van-field :label="$t('form.OfferCategory')" label-width="130" :value="category.value" readonly clickable :placeholder="$t('form.OfferCategory')" @click="showCategory" right-icon="arrow" />
             <van-popup v-model="category.show" position="bottom">
                 <van-picker ref="category" :columns="category.columns" @change="onChange" :show-toolbar="true" @cancel="category.show = false" @confirm="selectCategory" />
             </van-popup>
 
             <van-uploader class="upload" v-model="fileList" @delete="delUpload" :after-read="afterRead" multiple :max-count="1" :deletable="edit" :disabled="!edit" />
-            <van-field :label="$t('form.ProductDescription')" label-width="130" :placeholder="$t('form.ProductDescription')" v-model="form.Description" :disabled="!edit" />
+            <van-field :label="$t('form.OfferDescription')" label-width="130" :placeholder="$t('form.OfferDescription')" v-model="form.Description" :disabled="!edit" />
             <van-field :label="$t('form.Summary')" rows="2" type="textarea" autosize show-word-limit maxlength="200" :placeholder="$t('form.Summary')" v-model="form.Summary" :disabled="!edit" />
         </van-cell-group>
         <van-row class="actions" type="flex" gutter="20">

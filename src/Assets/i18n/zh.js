@@ -24,11 +24,11 @@ export default {
                     name: '产品管理',
                     children: [{
                             name: '全部产品',
-                            url: '/UserCenter/myProduct'
+                            url: '/UserCenter/productsAbroad'
                         },
                         {
                             name: '添加产品',
-                            url: '/UserCenter/AddProduct'
+                            url: '/UserCenter/products'
                         }
                     ]
                 },

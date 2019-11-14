@@ -1,7 +1,7 @@
 <template>
 <Layout :title="$t('table.SentBox')">
     <div class="abroad">
-        <van-panel class="letter" :title="'['+(index+1)+']'+ $t('table.Subject') + ':' + item.Subject" v-for="(item,index) in viewData" :key="item.ID">
+        <van-panel class="abroadItems" :title="'['+(index+1)+']'+ $t('table.Subject') + ':' + item.Subject" v-for="(item,index) in viewData" :key="item.ID">
             <div class="info">
                 <p>{{$t('table.FormR')}}:{{item.SupplyNameFrom}}</p>
                 <!-- <p>{{$t('table.ToR')}}:{{item.SupplyNameTo}}</p> -->
@@ -94,8 +94,8 @@ export default {
 
 <style scoped lang="scss">
 .abroad {
-    .letter {
-        margin-bottom: 0.4rem;
+    .abroadItems {
+        margin-bottom: 0.2rem;
     }
     .info {
         padding: 0.1rem 0.25rem;

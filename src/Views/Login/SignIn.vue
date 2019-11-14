@@ -1,24 +1,28 @@
 <template>
-<div class="wrap">
-    <div class="View">
-        <el-form ref="form" :model="form" :rules="formRules" label-width="80px">
-            <h5>登录</h5>
-            <el-form-item label="手机号" prop="LoginName">
-                <el-input v-model="form.LoginName" placeholder="请输入手机号" type="number"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="LoginPass">
-                <el-input v-model="form.LoginPass" type="password" placeholder="请输入密码"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="submit" :loading="form.loading">登录</el-button>
-            </el-form-item>
-        </el-form>
-        <div class="bottom">
-            <router-link :to="{'name': 'SignUp'}">注册</router-link>
-            <router-link :to="{'name': 'Forgot'}">忘记密码</router-link>
-        </div>
+    <div class="login">
+    	<div class="loginBox">
+    		<h1 class="loginLogo"></h1>
+    		<div class="loginArea">
+    			<ul class="loginInputBox">
+    				<li class="van-hairline--bottom">
+    					<input class="customInput" type="text" v-model="form.LoginName" :placeholder="form.placeholder1" @focus="form.placeholder1 = ''" @blur="blurFocus('LoginName')">
+    				</li>
+    				<li class="van-hairline--bottom">
+    					<input class="customInput" type="password" v-model="form.LoginPass" :placeholder="form.placeholder2" @focus="
+    					form.placeholder2 = '';form.LoginPass = ''" @blur="blurFocus('LoginPass')">
+    				</li>
+    			</ul>
+
+    			<van-button class="van-button--custom" :loading="form.loading == 'loading'" round :block="true" size="normal" @click="submit">Login</van-button>
+    		</div>
+    	</div>
+
+    	<div class="other">
+    		<router-link class="FindPass" :to="{'name': 'Forgot'}">Forget LoginPass</router-link>
+    		|
+    		<router-link class="Register" :to="{'name': 'SignUp'}">Register</router-link>
+    	</div>
     </div>
-</div>
 </template>
 
 <script>
@@ -27,89 +31,122 @@ import Util from "@/assets/service/customUtil";
 
 export default {
     data() {
+        let placeholder1 = '请输入手机号'
+        let placeholder2 = '请输入密码'
         return {
+            placeholder1: placeholder1,
+            placeholder2: placeholder2,
             form: {
-                loading:false
+                LoginName: '',
+				LoginPass: '',
+				placeholder1: placeholder1,
+				placeholder2: placeholder2,
+                loading: ''
             },
-            formRules: {
-                LoginName: [{
-                    required: true,
-                    message: this.$t('text.input') + '手机号' + this.$t('text.here'),
-                    trigger: 'blur'
-                }, {
-                    validator: (rule, value, callback) => {
-                        let phone = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
-                        if (!phone.test(value)) {
-                            callback(new Error('无效的手机号'));
-                        } else {
-                            callback();
-                        }
-                    },
-                    trigger:'blur'
-                }],
-                LoginPass: [{
-                    required: true,
-                    message: this.$t('text.input') + this.$t('form.PassWord') + this.$t('text.here'),
-                    trigger: 'blur'
-                }]
-            },
+            // formRules: {
+            //     LoginName: [{
+            //         required: true,
+            //         message: this.$t('text.input') + 'Email' + this.$t('text.here'),
+            //         trigger: 'blur'
+            //     }, {
+            //         type: 'email',
+            //         message: 'Invalid email'
+            //     }],
+            //     LoginPass: [{
+            //         required: true,
+            //         message: this.$t('text.input') + this.$t('form.LoginPass') + this.$t('text.here'),
+            //         trigger: 'blur'
+            //     }]
+            // },
         }
     },
     created() {
         let _this = this;
-
-        // 注册enter事件
-        document.body.addEventListener('keydown', function(e) {
-            if (e.keyCode == 13) {
-                if (_this.form.LoginName && _this.form.LoginPass && _this.$refs['form']) {
-                    _this.submit();
-                }
-            }
-        });
     },
     methods: {
+        // isLogin() {
+		// 	let auth = Util.getsessionStorage('auth')
+		// 	if (auth) {
+		// 		this.$router.push({
+		// 			'name': 'UserCenter'
+		// 		})
+		// 	}
+		// },
+		blurFocus(type) {
+			if (type == 'LoginName') {
+				this.form.placeholder1 = this.form.LoginName == '' ? this.placeholder1 : ''
+			} else {
+				this.form.placeholder2 = this.form.LoginPass == '' ? this.placeholder2 : ''
+			}
+		},
         submit() {
-            this.$refs['form'].validate((valid) => {
-                if (valid) {
-                    this.form.loading = true
-
-                    customRequest({
-                        method: 'post',
-                        url: '/WebUser/Login',
-                        data: this.form
-                    }).then(result => {
-                        Util.doLogin(result,this.$route.query.Rurl)
-                    }).finally(()=>{
-                        this.form.loading = false
-                    })
-                }
-            });
+            this.form.loading = 'loading'
+            customRequest({
+                method: 'post',
+                url: '/WebUser/Login',
+                data: this.form
+            }).then(result => {
+                Util.doLogin(result, this.$route.query.Rurl)
+            }).finally(() => {
+                this.form.loading = ''
+            })
+            // this.$refs['form'].validate((valid) => {
+            //     if (valid) {
+            //
+            //     }
+            // });
         }
     },
 }
 </script>
 
-<style scoped lang="scss">
-.wrap {
-    overflow: auto;
+<style lang="scss" scoped>
+.login {
+    position: relative;
     height: 100%;
-    background: #f5f5f5;
-    .View {
-        margin: 0 auto;
-        width: 410px;
-        h5 {
-            text-align: center;
-            font-size: 20px;
-        }
+    background: url("../../../static/image/loginBg.png") no-repeat;
+    background-size: cover;
+    .loginBox {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-70%);
+        padding: 0 0.45rem;
+        width: 100%;
 
-        .bottom{
-            overflow: auto;
-            padding: 10px 0 20px;
-            a{
-                color: #333;
-                &:last-child{
-                    float: right;
+        .loginLogo {
+            height: 3.7rem;
+            background: url("../../../static/image/loginLogo.png") center no-repeat;
+            background-size: 2rem;
+        }
+        .loginArea {
+            .loginInputBox {
+                margin-bottom: 0.9rem;
+                li {
+                    margin-bottom: 0.15rem;
+                    &:after {
+                        border-color: #949ded;
+                    }
+                    input {
+                        text-align: center;
+                        font-size: .28rem;
+                    }
                 }
+            }
+        }
+    }
+    .other {
+        position: absolute;
+        bottom: 0.25rem;
+        width: 100%;
+        color: #fff;
+        text-align: center;
+        font-size: 0.3rem;
+        a {
+            padding: 0 0.25rem;
+            color: #fff;
+            &:active {
+                color: #2795ee;
             }
         }
     }
