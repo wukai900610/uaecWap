@@ -366,7 +366,7 @@ const app = {
                         press2: 'Cualquier miembro de la prensa que desee asistir a esta feria debe contactarnos. Nuestros contactos estarán encantados de ayudarle con cualquier consulta que pueda tener relacionada con sus informes. Alternativamente, puede registrarse en el sitio presentando su tarjeta de trabajo en el mostrador de inscripción durante la feria.',
                     }
                 },
-                ExhiInfo:['Textile&Clothing Machine','Others','Luggage&Shoes','Yarns','Trims & Accessories','Fabrics','Textile Chemicals','Home Textile']
+                ExhiInfoEn:['Textile&Clothing Machine','Others','Luggage&Shoes','Yarns','Trims & Accessories','Fabrics','Textile Chemicals','Home Textile']
             },
             'autoequip-nigeria': {
                 logo: '/static/image/logo5.png',
@@ -640,7 +640,29 @@ const app = {
                         ]
                     }
                 },
-                ExhiInfo:['Components','Vehicle Electronics','Accessories Modification','Repair Equipment','Vehicle Maintenance','Festivals & Parties','Others']
+                ExhiInfo:[{
+                    label:'部件组件',
+                    text:'传动系统、车身零件、电源系统（发动机、变速箱、燃料系统），驱动控制系统（方向盘、悬吊系统、底盘、活塞、弹簧）、电装系统（连接器、仪表、电装零件、继电器、线组、马达、电池）、内装（橡胶板、空调、内饰木纹状部件）、车外产品、电气系统、驾驶辅助系统、安全系统、排气系统、齿轮及传动装置、其他'
+                },{
+                    label:'配件改装',
+                    text:'特别设备、改装服务、轮胎及胎圈、离心管及套管、其他'
+                },{
+                    label:'修护设备',
+                    text:'保养及修理装备、车间维修及涂漆、维修站建造及管理、诊断与测量测试器材、修护工具及技术、升降台、道路援救及拖吊车设备、仓储设备、轮胎安装、车身维修、废物处理及回收、无油漆凹陷修理、其他'
+                },{
+                    label:'车辆电子',
+                    text:'电子零件、照明设备、汽摩音响、电子娱乐系统、智能导航系统、免提电话等通讯器材、冷气设备、其他'
+                },{
+                    label:'车辆保养',
+                    text:'加油站服务站及停车场设备、清洗及维护、美容产品、喷面镀膜、车面覆膜、内装清洁、洗车设备与耗材、其他'
+                },{
+                    label:'车辆烤漆',
+                    text:'喷漆厂设备与材料、车辆防锈防腐蚀技术与材料、其他'
+                },{
+                    label:'其他',
+                    text:'车辆跟踪系统、收费系统、自动防盗装置、汽油及润滑油、其他'
+                }],
+                ExhiInfoEn:['Components','Vehicle Electronics','Accessories Modification','Repair Equipment','Vehicle Maintenance','Festivals & Parties','Others']
             },
             //打不开
             'cotex-colombia': {
@@ -1384,7 +1406,32 @@ const app = {
                         press2: 'Cualquier miembro de la prensa que desee asistir a esta feria debe contactarnos. Nuestros contactos estarán encantados de ayudarle con cualquier consulta que pueda tener relacionada con sus informes. Alternativamente, puede registrarse en el sitio presentando su tarjeta de trabajo en el mostrador de inscripción durante la feria.',
                     }
                 },
-                ExhiInfo:['Housewares Products','Home Accessories','Home Textile','Gardening & Outdoor','Gifts&Office Supplies','Festivals & Parties','Consumer Electronics','Sports Beauty']
+                ExhiInfo:[{
+                    label:'餐厨家用',
+                    text:'厨房用品、餐桌用品、卫生清洁、收纳用具、浴室用品、家具与配件、宠物用品、日用消费品、其他 母婴用品、日用消费品、其他'
+                },{
+                    label:'家庭装饰',
+                    text:'灯具照明、人造花果、油画相框、装饰蜡烛、墙纸、软装饰品、工艺礼品、镜子挂钟、时尚创意、家居改进、五金工具、其他'
+                },{
+                    label:'家纺产品',
+                    text:'床上用品、厨浴家纺、窗帘遮阳、装饰织物、墙纸、地毯靠垫、其他'
+                },{
+                    label:'花园园艺',
+                    text:'草坪用品、露营用品、野炊用品、园林机械、花园用品、园艺工具、烧烤、其他'
+                },{
+                    label:'礼品办公',
+                    text:'礼品工艺品、办公文具、箱包、旅游用品、薰香制品、贺卡、玩具、促销用品、珠宝首饰、个人用品、其他'
+                },{
+                    label:'节日派对',
+                    text:'圣诞用品、节日派对饰品礼品、宗教饰品、饰品包装、焰火、其他'
+                },{
+                    label:'消费电子',
+                    text:'家用电器、电子设备、电脑周边、视频音频、移动终端、其他'
+                },{
+                    label:'美容运动',
+                    text:'运动器械、运动用品、户外用品、按摩保健、美容美发、其他'
+                }],
+                ExhiInfoEn:['Housewares Products','Home Accessories','Home Textile','Gardening & Outdoor','Gifts&Office Supplies','Festivals & Parties','Consumer Electronics','Sports Beauty']
             },
             'homeshow-nigeria': {
                 logo: '/static/image/logo4.png',
@@ -1669,7 +1716,32 @@ const app = {
                         ]
                     }
                 },
-                ExhiInfo:['Housewares Products','Home Accessories','Home Textile','Gardening & Outdoor','Gifts&Office Supplies','Festivals & Parties','Consumer Electronics','Sports Beauty']
+                ExhiInfo:[{
+                    label:'餐厨家用',
+                    text:'厨房用品、餐桌用品、卫生清洁、收纳用具、浴室用品、家具与配件、 母婴用品、日用消费品、其他'
+                },{
+                    label:'家庭装饰',
+                    text:'灯具照明、人造花果、油画相框、装饰蜡烛、墙纸、软装饰品、工艺礼品、镜子挂钟、时尚创意、家居改进、五金工具、其他'
+                },{
+                    label:'家纺产品',
+                    text:'床品床垫、蚊帐、厨卫纺织、沙发布、窗帘布、装饰布、靠垫地垫、其他'
+                },{
+                    label:'礼品办公',
+                    text:'礼品工艺品、办公用品、箱包、旅游用品、薰香制品、贺卡、玩具、促销用品、珠宝首饰、个人用品、'
+                },{
+                    label:'节日派对',
+                    text:'圣诞用品、节日派对饰品礼品、宗教饰品、饰品包装、焰火'
+                },{
+                    label:'消费电子',
+                    text:'家用电器、电子设备、电脑周边、视频音频、手机周边、移动终端、其他'
+                },{
+                    label:'花园园艺',
+                    text:'草坪用品、露营用品、野炊烧烤、园林机械、花园用品、园艺工具、其他'
+                },{
+                    label:'美容运动',
+                    text:'美容美发美甲、洗漱清洁、运动器械、运动用品、户外用品、其他'
+                }],
+                ExhiInfoEn:['Housewares Products','Home Accessories','Home Textile','Gardening & Outdoor','Gifts&Office Supplies','Festivals & Parties','Consumer Electronics','Sports Beauty']
             },
             'nigeriatex': {
                 logo: '/static/image/logo3.png',
@@ -1964,7 +2036,32 @@ const app = {
                         ]
                     }
                 },
-                ExhiInfo:['Apparels & Accessories','Textile Chemicals','Footwear & Bags','Yarns','Trims & Accessories','Fabrics','Home Textile']
+                ExhiInfo:[{
+                    label:'服装服饰',
+                    text:'男/女/童装、休闲/运动装、衬衫、内衣、领带、首饰、皮带、假发、其他'
+                },{
+                    label:'服装面料',
+                    text:'服装面料、纺织面料、功能性面料、合纤面料、皮革、PU/PVC、其他'
+                },{
+                    label:'家纺产品',
+                    text:'床品床垫、蚊帐、厨卫用品、沙发布、窗帘布、装饰布、靠垫地垫、其他'
+                },{
+                    label:'鞋类箱包',
+                    text:'凉鞋、拖鞋、皮革制品、箱包、手袋、背包、其他'
+                },{
+                    label:'辅料配件',
+                    text:'垫肩、里衬、花边、刺绣、缎带、丝带、纽扣、拉链、衣架、其他'
+                },{
+                    label:'纤维纱线',
+                    text:'纤维、抽纱、纱线、特殊纺丝、织造及整理、花式纱、其他'
+                },{
+                    label:'染化产品',
+                    text:'纺织用化学品、染料、助剂、其他'
+                },{
+                    label:'纺机服机',
+                    text:'纺织机械、工业/家用缝纫机、附件及零配件、其他'
+                }],
+                ExhiInfoEn:['Apparels & Accessories','Textile Chemicals','Footwear & Bags','Yarns','Trims & Accessories','Fabrics','Home Textile'],
             },
         },
         skin: {},
@@ -2044,8 +2141,8 @@ const app = {
 
             if (process.env.NODE_ENV == "development") { //切换国家code
                 // hostName = 'homeshow-colombia'
-                // hostName = 'homeshow-nigeria'
-                hostName = 'nigeriatex'
+                hostName = 'homeshow-nigeria'
+                // hostName = 'nigeriatex'
                 // hostName = 'autoequip-nigeria'
 
                 // 无用

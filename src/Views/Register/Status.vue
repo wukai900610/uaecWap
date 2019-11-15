@@ -1,10 +1,10 @@
 <template>
 <Layout :title="$i18n.locale == 'en' ? 'Choose the Status' : '请选择展会身份'">
     <div class="status">
-        <router-link :to="{'name': 'order',query:{isExhibitor:1}}" class="button">
+        <router-link :to="{'name': 'order',query:{IsExhibitor:1}}" class="button">
             <van-button class="largeCustomBtn" type="info" size="large">{{$t('table.Exhibitor')}}</van-button>
         </router-link>
-        <router-link :to="{'name': 'order',query:{isExhibitor:0}}" class="button">
+        <router-link :to="{'name': 'order',query:{IsExhibitor:0}}" class="button">
             <van-button class="largeCustomBtn" type="default" size="large">{{$t('table.Visitor')}}</van-button>
         </router-link>
     </div>

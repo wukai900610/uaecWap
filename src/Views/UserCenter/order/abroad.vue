@@ -45,18 +45,10 @@ export default {
             this.$router.push({
                 name:'order',
                 query:{
-                    id:item.ID
+                    id:item.ID,
+                    IsExhibitor:item.IsExhibitor
                 }
             })
-            // if (item.Lan == 'en') {
-            //     this.$router.push('/User/putEnExhibitors?title=' + item.ExpoName + '&code=' + item.Code + '&isExhibitor=' + item.IsExhibitor + '&id=' + item.ID)
-            // } else {
-            //     if (item.IsExhibitor == 0) {
-            //         this.$router.push('/User/VisitorEdit?code=' + item.Code + '&id=' + item.ID)
-            //     } else {
-            //         this.$router.push('/User/ExhibitorEdit?code=' + item.Code + '&id=' + item.ID)
-            //     }
-            // }
         },
     },
 }

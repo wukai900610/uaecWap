@@ -1,5 +1,5 @@
-<template>
-<Layout :title="($store.state.app.userInfo.isExhibitor==1?'Exhibitors':'Visitors') + ' Application'">
+IsExhibitor<template>
+<Layout :title="($route.query.IsExhibitor==1?'Exhibitors':'Visitors') + ' Application'">
     <div class="exhibitor">
         <van-cell-group class="group">
             <van-field label="Company:" v-model="form.Company" placeholder="Company" :disabled="!edit" />
@@ -18,7 +18,6 @@
         <van-cell-group class="group">
             <h5>Mobile</h5>
             <van-field label="Country Code:" v-model="form.ManMobileCountryCode" placeholder="Country Code" :disabled="!edit" />
-            <van-field label="Area Code:" v-model="form.ManTelAreaCode" placeholder="Area Code" :disabled="!edit" />
             <van-field label="Mobile:" v-model="form.ManMobile" placeholder="Mobile" :disabled="!edit" />
         </van-cell-group>
         <van-cell-group class="group">
@@ -38,6 +37,7 @@
             <van-field label="Email:" v-model="form.ManEmail" placeholder="Email" :disabled="!edit" />
             <van-field label="Website:" v-model="form.WebSite" placeholder="WebSite" :disabled="!edit" />
         </van-cell-group>
+        
         <van-radio-group v-model="form.NeedInvitation" :disabled="!edit">
             <van-cell-group class="group">
                 <h5>Invitation letter</h5>
@@ -49,15 +49,17 @@
                 </van-cell>
             </van-cell-group>
         </van-radio-group>
+
         <van-checkbox-group v-model="form.ExhiInfoArr" :disabled="!edit">
             <van-cell-group class="group">
                 <h5>Please Choose Your Preferred Products</h5>
-                <van-cell v-for="(item, index) in $store.state.app.skin.ExhiInfo" clickable :key="item" :title="item" @click="toggle('checkboxes',index)">
+                <van-cell v-for="(item, index) in $store.state.app.skin.ExhiInfoEn" clickable :key="item" :title="item" @click="toggle('checkboxes',index)">
                     <van-checkbox shape="square" :name="item" ref="checkboxes" slot="right-icon" />
                 </van-cell>
             </van-cell-group>
         </van-checkbox-group>
-        <van-radio-group v-model="form.BoothArea" v-if="$store.state.app.userInfo.isExhibitor == 1" :disabled="!edit">
+
+        <van-radio-group v-model="form.BoothArea" v-if="$route.query.IsExhibitor == 1" :disabled="!edit">
             <van-cell-group class="group">
                 <h5>You Would Like to Reserve</h5>
                 <van-cell title="Shell Scheme Package" clickable @click="radioClick('BoothArea','1')">
@@ -71,6 +73,7 @@
                 </van-field>
             </van-cell-group>
         </van-radio-group>
+
         <van-row class="actions" type="flex" gutter="20">
             <van-col span="24" v-if="!edit">
                 <van-button type="info" size="small" @click="onEdit(true)">{{$t('form.modify')}}</van-button>
@@ -144,16 +147,10 @@ export default {
         },
         onSubmit() {
             this.form.ExhiInfo = this.form.ExhiInfoArr.toString()
+            this.form.IsExhibitor = this.$route.query.IsExhibitor
 
-            let method
-            if(this.$route.query.id){
-                method = 'put'
-            }else{
-                method = 'post'
-                this.form.IsExhibitor = this.$route.query.isExhibitor
-            }
             customRequest({
-                method: method,
+                method: this.$route.query.id ? 'put' : 'post',
                 url: '/WebOrderExhi',
                 data: this.form
             }).then(result => {
@@ -163,18 +160,18 @@ export default {
                     this.edit = false
                 }else{
                     // 新增模式
-                    if (this.$route.query.isExhibitor == 0) {
+                    if (this.$route.query.IsExhibitor == 0) {
                         this.$dialog.alert({
                             title: 'Registration successful!',
                             content:'This is your registration code ' + this.$store.state.app.userInfo.ID +
                                 '.<br/>Please take a photo of this page and keep it,then offer this code to employees on-site to redeem a visitor badge on the entrance of Hall 1.'
                         }).then(() => {
-                            this.$store.dispatch('set_isExhibitor', this.$route.query.isExhibitor).then(() => {
+                            this.$store.dispatch('set_isExhibitor', this.$route.query.IsExhibitor).then(() => {
                                 this.$router.back()
                             })
                         });
-                    } else if (this.$route.query.isExhibitor == 1) {
-                        this.$store.dispatch('set_isExhibitor', this.$route.query.isExhibitor).then(() => {
+                    } else if (this.$route.query.IsExhibitor == 1) {
+                        this.$store.dispatch('set_isExhibitor', this.$route.query.IsExhibitor).then(() => {
                             this.$router.back()
                         })
                     }
