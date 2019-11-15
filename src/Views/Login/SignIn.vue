@@ -1,5 +1,8 @@
 <template>
     <div class="login">
+        <div class="back" @click="$router.back()">
+            <van-icon name="arrow-left" />
+        </div>
     	<div class="loginBox">
     		<h1 class="loginLogo" :style="'background-image:url('+logo+')'"></h1>
     		<div class="loginArea">
@@ -85,6 +88,20 @@ export default {
     height: 100%;
     background: url("../../../static/image/loginBg.png") no-repeat;
     background-size: cover;
+    .back{
+        position: absolute;
+        left: 5%;
+        top: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: .5rem;
+        height: .5rem;
+        border: 1px solid #469aeb;
+        color: #469aeb;
+        border-radius: 50%;
+        z-index: 10;
+    }
     .loginBox {
         position: absolute;
         left: 50%;
@@ -119,8 +136,9 @@ export default {
         bottom: 0.25rem;
         width: 100%;
         color: #fff;
+        opacity: .5;
         text-align: center;
-        font-size: 0.3rem;
+        font-size: 0.22rem;
         a {
             padding: 0 0.25rem;
             color: #fff;
