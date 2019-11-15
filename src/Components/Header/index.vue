@@ -1,6 +1,6 @@
 <template>
 <header class="header">
-    <div v-if="isIndex" class="head">
+    <div v-if="isIndex" class="head" :style="{background:$store.state.app.skin.background}">
         <div class="left">
             <span class="changeLan" @click="popup.show = true">
                 <van-icon :name="popup.show ? 'cross' : 'wap-nav'" />

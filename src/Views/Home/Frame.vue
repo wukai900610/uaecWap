@@ -2,12 +2,13 @@
 <div>
 	<router-view></router-view>
 
-	<van-tabbar class="customTabbar" v-model="active">
-		<van-tabbar-item v-for="(item,index) in tabNav" :key="index">
+	<van-tabbar class="customTabbar" v-model="active" :active-color="$store.state.app.skin.background">
+		<van-tabbar-item :icon="item.ico" :to="item.name" v-for="(item,index) in tabNav" :key="index">{{$t('tabNav')[index].title}}</van-tabbar-item>
+		<!-- <van-tabbar-item v-for="(item,index) in tabNav" :key="index">
 			<router-link :class="item.tabItemClass" :to="{name:item.name}">
 				{{$t('tabNav')[index].title}}
 			</router-link>
-		</van-tabbar-item>
+		</van-tabbar-item> -->
 	</van-tabbar>
 </div>
 </template>
@@ -20,16 +21,19 @@ export default {
 			active: 0,
 			tabNav: [{
 					name: 'home',
+					ico:'wap-home',
 					// title: '主页',
 					tabItemClass: 'tabItem ico ico1'
 				},
 				{
 					name: 'MatchupExpo',
+					ico:'goods-collect',
 					// title: 'Matchup Expo',
 					tabItemClass: 'tabItem ico ico2'
 				},
 				{
 					name: 'UserCenter',
+					ico:'manager',
 					// title: '我的',
 					tabItemClass: 'tabItem ico ico3'
 				}
