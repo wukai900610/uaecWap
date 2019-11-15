@@ -40,7 +40,7 @@
             <van-field label="网址:" v-model="form.WebSite" placeholder="网址" :disabled="!edit" />
             <van-field label="微信/QQ:" v-model="form.ManWechat" placeholder="微信/QQ" :disabled="!edit" />
         </van-cell-group>
-        
+
         <van-checkbox-group v-model="form.ExhiInfoArr" :disabled="!edit">
             <van-cell-group class="group">
                 <h5>展位区域</h5>
@@ -166,7 +166,7 @@ export default {
                     this.edit = false
                 }else{
                     // 新增模式
-                    this.$store.dispatch('set_isExhibitor', this.$route.query.IsExhibitor).then(() => {
+                    this.$store.dispatch('set_IsExhibitor', this.$route.query.IsExhibitor).then(() => {
                         this.$router.back()
                     })
                 }

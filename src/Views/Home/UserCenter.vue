@@ -77,11 +77,11 @@ export default {
     },
     methods: {
         myStatus(){
-            if(this.$store.state.app.userInfo.isExhibitor === ''){
+            if(this.$store.state.app.userInfo.IsExhibitor === ''){
                 return this.$i18n.locale == 'en' ? 'Please choose your status' : '请选择身份'
-            }else if(this.$store.state.app.userInfo.isExhibitor == 1){
+            }else if(this.$store.state.app.userInfo.IsExhibitor == 1){
                 return this.$t('table.Exhibitor')
-            }else if(this.$store.state.app.userInfo.isExhibitor == 0){
+            }else if(this.$store.state.app.userInfo.IsExhibitor == 0){
                 return this.$t('table.Visitor')
             }
         },

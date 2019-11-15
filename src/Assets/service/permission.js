@@ -26,7 +26,7 @@ router.beforeEach((to, from, next) => {
         // console.log(from);
         // 可以取到本地token 已登陆
         if (token) {
-            if (store.state.app.userInfo.isExhibitor === '' || store.state.app.userInfo.isExhibitor === undefined) { //未选择身份
+            if (store.state.app.userInfo.IsExhibitor === '' || store.state.app.userInfo.IsExhibitor === undefined) { //未选择身份
                 if(to.name == 'Status' || to.name == 'Account' || to.name == 'ChangePassword' || to.path.toLowerCase().indexOf('order') > -1){
                     next()
                 }else{
@@ -82,7 +82,7 @@ router.beforeEach((to, from, next) => {
 
                 store.dispatch('set_token', {
                     User: result.data.User,
-                    isExhibitor: result.data.isExhibitor,
+                    IsExhibitor: result.data.IsExhibitor,
                     Ticket: token
                 })
             }).catch(e => {

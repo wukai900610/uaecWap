@@ -2093,7 +2093,7 @@ const app = {
             // theme(state.skin.colorVariables, '#000000')
         },
         setIsExhibitor: (state, data) => {
-            state.userInfo.isExhibitor = data
+            state.userInfo.IsExhibitor = data
         },
         setToken: (state, token) => {
             state.token = token
@@ -2151,7 +2151,7 @@ const app = {
             }
             commit('setSkin', {hostName, default:'homeshow-colombia'})
         },
-        set_isExhibitor:({
+        set_IsExhibitor:({
             commit
         }, result) => {
             commit('setIsExhibitor', result)
@@ -2166,12 +2166,12 @@ const app = {
                 // store 用户信息
                 commit('setUserInfo', {
                     ...result.User,
-                    isExhibitor: result.isExhibitor
+                    IsExhibitor: result.IsExhibitor
                 })
                 // 保存用户信息
                 Util.setsessionStorage('userInfo', {
                     ...result.User,
-                    isExhibitor: result.isExhibitor
+                    IsExhibitor: result.IsExhibitor
                 })
 
                 resolve()

@@ -37,7 +37,7 @@ IsExhibitor<template>
             <van-field label="Email:" v-model="form.ManEmail" placeholder="Email" :disabled="!edit" />
             <van-field label="Website:" v-model="form.WebSite" placeholder="WebSite" :disabled="!edit" />
         </van-cell-group>
-        
+
         <van-radio-group v-model="form.NeedInvitation" :disabled="!edit">
             <van-cell-group class="group">
                 <h5>Invitation letter</h5>
@@ -166,12 +166,12 @@ export default {
                             content:'This is your registration code ' + this.$store.state.app.userInfo.ID +
                                 '.<br/>Please take a photo of this page and keep it,then offer this code to employees on-site to redeem a visitor badge on the entrance of Hall 1.'
                         }).then(() => {
-                            this.$store.dispatch('set_isExhibitor', this.$route.query.IsExhibitor).then(() => {
+                            this.$store.dispatch('set_IsExhibitor', this.$route.query.IsExhibitor).then(() => {
                                 this.$router.back()
                             })
                         });
                     } else if (this.$route.query.IsExhibitor == 1) {
-                        this.$store.dispatch('set_isExhibitor', this.$route.query.IsExhibitor).then(() => {
+                        this.$store.dispatch('set_IsExhibitor', this.$route.query.IsExhibitor).then(() => {
                             this.$router.back()
                         })
                     }
