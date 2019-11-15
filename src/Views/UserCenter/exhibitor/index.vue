@@ -143,40 +143,43 @@ export default {
             this.edit = value
         },
         onSubmit() {
-            this.$refs['form'].validate((valid) => {
-                if (valid) {
-                    this.form['IsExhibitor'] = this.$store.state.app.userInfo.isExhibitor
-                    // this.form['Lan'] = 'en'
-                    // this.form.ExhiInfo = this.form.ExhiInfoArr.join(',')
+            this.form.ExhiInfo = this.form.ExhiInfoArr.toString()
 
-                    customRequest({
-                        method: 'post',
-                        url: '/WebOrderExhi',
-                        data: this.form
-                    }).then(result => {
-                        // 访客才弹出信息
-                        if (this.$route.query.isExhibitor == 0) {
-                            this.$alert('This is your registration code ' + this.$store.state.app.userInfo.ID +
-                                '.<br/>Please take a photo of this page and keep it,then offer this code to employees on-site to redeem a visitor badge on the entrance of Hall 1.', 'Registration successful!', {
-                                    dangerouslyUseHTMLString: true,
-                                    callback: action => {
-                                        this.$store.dispatch('set_isExhibitor', this.$route.query.isExhibitor).then(() => {
-                                            this.$router.push({
-                                                name: 'abroad'
-                                            })
-                                        })
-                                    }
-                                });
-                        } else if (this.$route.query.isExhibitor == 1) {
+            let method
+            if(this.$route.query.id){
+                method = 'put'
+            }else{
+                method = 'post'
+                this.form.IsExhibitor = this.$route.query.isExhibitor
+            }
+            customRequest({
+                method: method,
+                url: '/WebOrderExhi',
+                data: this.form
+            }).then(result => {
+                // 访客才弹出信息
+                if(this.$route.query.id){
+                    // 编辑模式
+                    this.edit = false
+                }else{
+                    // 新增模式
+                    if (this.$route.query.isExhibitor == 0) {
+                        this.$dialog.alert({
+                            title: 'Registration successful!',
+                            content:'This is your registration code ' + this.$store.state.app.userInfo.ID +
+                                '.<br/>Please take a photo of this page and keep it,then offer this code to employees on-site to redeem a visitor badge on the entrance of Hall 1.'
+                        }).then(() => {
                             this.$store.dispatch('set_isExhibitor', this.$route.query.isExhibitor).then(() => {
-                                this.$router.push({
-                                    name: 'abroad'
-                                })
+                                this.$router.back()
                             })
-                        }
-                    })
+                        });
+                    } else if (this.$route.query.isExhibitor == 1) {
+                        this.$store.dispatch('set_isExhibitor', this.$route.query.isExhibitor).then(() => {
+                            this.$router.back()
+                        })
+                    }
                 }
-            });
+            })
         },
         onInit() {
             this.form = Util.getNewObj(this.copyData)

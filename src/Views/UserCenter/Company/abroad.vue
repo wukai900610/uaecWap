@@ -1,11 +1,11 @@
 <template>
 <Layout :title="$t('table.AllCompany')">
     <div class="abroad">
-        <van-panel :title="lan == 'zh' ? item.Title : item.TitleEn" :desc="item.Description" v-for="item in tableData" :key="item.ID">
+        <van-panel :title="item.Name" :desc="item.Description" v-for="item in tableData" :key="item.ID">
             <div class="info">
                 ID:{{item.ID}}
                 <br />
-                {{$t('table.CompanyName')}}:{{item.Name}}
+                {{lan == 'zh' ? item.Title : item.TitleEn}}
             </div>
             <div slot="footer">
                 <van-button type="info" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>

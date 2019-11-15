@@ -56,7 +56,8 @@ service.interceptors.response.use(
         // 前中后英
         let msgs = res.msg.split('::')
         // 263:消息管理页面标记消息已读未读
-        if (res.code == 200 || res.code == 263) { //正常
+        // 243:展会管理页面提交信息
+        if (res.code == 200 || res.code == 263 || res.code == 243) { //正常
             return Promise.resolve(res);
         } else {
             Toast.fail(lang == 'en' ? (msgs[1] || res.msg) : (msgs[0] || res.msg))

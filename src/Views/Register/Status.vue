@@ -1,35 +1,38 @@
 <template>
-    <div class="wrap">
-        <div class="View">
-            <h5>{{lan == 'en' ? 'Choose the Status' : '请选择展会身份'}}</h5>
-            <div style="text-align:center;" v-if="lan == 'en'">
-                <router-link :to="{'name': 'userEnExhibitors',query:{code:$store.getters.skin.code,isExhibitor:1}}" class="button">
-                    <van-button>Exhibitor</van-button>
-                </router-link>
-                <router-link :to="{'name': 'userEnExhibitors',query:{code:$store.getters.skin.code,isExhibitor:0}}" class="button">
-                    <van-button>Visitor</van-button>
-                </router-link>
-            </div>
-            <div style="text-align:center;" v-else>
-                <router-link :to="{'name': 'ExhibitorAdd',query:{code:$store.getters.skin.code,isExhibitor:1}}" class="button">
-                    <van-button>参展商</van-button>
-                </router-link>
-                <router-link :to="{'name': 'VisitorAdd',query:{code:$store.getters.skin.code,isExhibitor:0}}" class="button">
-                    <van-button>观展商</van-button>
-                </router-link>
-            </div>
+<Layout :title="$i18n.locale == 'en' ? 'Choose the Status' : '请选择展会身份'">
+    <div class="status">
+        <div v-if="$i18n.locale == 'en'">
+            <router-link :to="{'name': 'exhibitor',query:{isExhibitor:1}}" class="button">
+                <van-button class="largeCustomBtn" type="info" size="large">{{$t('table.Exhibitor')}}</van-button>
+            </router-link>
+            <router-link :to="{'name': 'exhibitor',query:{isExhibitor:0}}" class="button">
+                <van-button class="largeCustomBtn" type="default" size="large">{{$t('table.Visitor')}}</van-button>
+            </router-link>
+        </div>
+        <div v-else>
+            <!-- <router-link :to="{'name': 'ExhibitorAdd',query:{isExhibitor:1}}" class="button">
+                <van-button class="largeCustomBtn" type="info" size="large">参展商</van-button>
+            </router-link>
+            <router-link :to="{'name': 'VisitorAdd',query:{isExhibitor:0}}" class="button">
+                <van-button class="largeCustomBtn" type="info" size="large">观展商</van-button>
+            </router-link> -->
         </div>
     </div>
+</Layout>
 </template>
 
 <script>
 import customRequest from "@/assets/service/customRequest";
 import Util from "@/assets/service/customUtil";
 
+import Layout from "@/components/Layout";
+
 export default {
+    components: {
+        Layout,
+    },
     data() {
         return {
-            lan: Util.getsessionStorage('lang')
         }
     },
     methods: {},
@@ -52,19 +55,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrap {
-    overflow: auto;
-    height: calc(100% - (140px + 357px));
+.status{
+    padding: .5rem .5rem 0;
     background: #fff;
-    .View {
-        h5 {
-            text-align: center;
-            font-size: 20px;
-        }
-        padding-bottom: 30px;
-        .button {
-            padding: 0 10px;
-        }
+    .largeCustomBtn{
+        margin-bottom: .5rem;
     }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
 <Layout :title="lan == 'en' ? 'Self-run Exhibition Projects' : '联亚国际自办展报名'">
     <div class="abroad">
-        <van-panel :title="item.ExpoName" :desc="$t(item.IsExhibitor == '1' ? 'table.Exhibitors' : 'table.Visitors')" v-for="item in tableData.from" :key="item.ID">
+        <van-panel :title="item.Company" :desc="$t(item.IsExhibitor == '1' ? 'table.Exhibitors' : 'table.Visitors')" v-for="item in tableData.from" :key="item.ID">
             <div class="info">
-                {{$t('table.CompanyName')}}:{{item.Company}}
+                {{item.ExpoName}}
             </div>
             <div slot="footer">
                 <van-button type="info" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>
