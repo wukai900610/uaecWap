@@ -1,9 +1,11 @@
 <template>
 <Layout :title="lan == 'en' ? 'Self-run Exhibition Projects' : '联亚国际自办展报名'">
     <div class="abroad">
-        <van-panel :title="item.Company" :desc="$t(item.IsExhibitor == '1' ? 'table.Exhibitors' : 'table.Visitors')" v-for="item in tableData.from" :key="item.ID">
+        <van-panel :title="item.Company" :desc="$t(item.IsExhibitor == '1' ? 'table.Exhibitor' : 'table.Visitor')" v-for="item in tableData.from" :key="item.ID">
             <div class="info">
-                {{item.ExpoName}}
+                <p>ID:{{item.ID}}</p>
+                <p>{{$t('table.ContactPerson')}}:{{item.ManFirstName}} {{item.ManLastName}}</p>
+                <p>{{$t('form.Mobilephone')}}:{{item.ManMobileCountryCode}} {{item.ManMobile}}</p>
             </div>
             <div slot="footer">
                 <van-button type="info" size="small" @click="edit(item)">{{$t('form.edit')}}</van-button>
@@ -41,7 +43,7 @@ export default {
     methods: {
         edit(item) {
             this.$router.push({
-                name:'exhibitor',
+                name:'order',
                 query:{
                     id:item.ID
                 }

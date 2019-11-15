@@ -50,16 +50,16 @@ export default new Router({
             meta: {
                 auth: true,
             },
-            component: () => import('@/Views/UserCenter/exhibitor/abroad')
+            component: () => import('@/Views/UserCenter/order/abroad')
         },
         // 英文参展 观展
         {
-            path: '/UserCenter/exhibitor',
-            name: 'exhibitor',
+            path: '/UserCenter/order',
+            name: 'order',
             meta: {
                 auth: true,
             },
-            component: () => import('@/Views/UserCenter/exhibitor/')
+            component: () => import('@/Views/UserCenter/order/')
         },
         // 公司管理
         {
