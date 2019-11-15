@@ -12,6 +12,7 @@
                 <img :src="defaultUser">
                 <div>
                     <span class="login">{{userInfo.LoginName}}</span>
+                    <p>{{myStatus()}}</p>
                 </div>
             </div>
             <div class="info" @click="toLogin" v-else>
@@ -71,12 +72,19 @@ export default {
             login: {
                 status: ''
             },
-            userAction: {
-                // msgPush: false
-            }
+
         }
     },
     methods: {
+        myStatus(){
+            if(this.$store.state.app.userInfo.isExhibitor === ''){
+                return this.$i18n.locale == 'en' ? 'Please choose your status' : '请选择身份'
+            }else if(this.$store.state.app.userInfo.isExhibitor == 1){
+                return this.$t('table.Exhibitor')
+            }else if(this.$store.state.app.userInfo.isExhibitor == 0){
+                return this.$t('table.Visitor')
+            }
+        },
         toLogin() {
             this.$router.push({
                 name: 'Login'
@@ -101,7 +109,6 @@ export default {
             this.$store.commit('setActiveCollapse',index)
         }
     },
-    mounted () {},
 }
 </script>
 
