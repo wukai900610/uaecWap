@@ -1,22 +1,12 @@
 <template>
 <Layout :title="$i18n.locale == 'en' ? 'Choose the Status' : '请选择展会身份'">
     <div class="status">
-        <div v-if="$i18n.locale == 'en'">
-            <router-link :to="{'name': 'exhibitor',query:{isExhibitor:1}}" class="button">
-                <van-button class="largeCustomBtn" type="info" size="large">{{$t('table.Exhibitor')}}</van-button>
-            </router-link>
-            <router-link :to="{'name': 'exhibitor',query:{isExhibitor:0}}" class="button">
-                <van-button class="largeCustomBtn" type="default" size="large">{{$t('table.Visitor')}}</van-button>
-            </router-link>
-        </div>
-        <div v-else>
-            <!-- <router-link :to="{'name': 'ExhibitorAdd',query:{isExhibitor:1}}" class="button">
-                <van-button class="largeCustomBtn" type="info" size="large">参展商</van-button>
-            </router-link>
-            <router-link :to="{'name': 'VisitorAdd',query:{isExhibitor:0}}" class="button">
-                <van-button class="largeCustomBtn" type="info" size="large">观展商</van-button>
-            </router-link> -->
-        </div>
+        <router-link :to="{'name': 'order',query:{isExhibitor:1}}" class="button">
+            <van-button class="largeCustomBtn" type="info" size="large">{{$t('table.Exhibitor')}}</van-button>
+        </router-link>
+        <router-link :to="{'name': 'order',query:{isExhibitor:0}}" class="button">
+            <van-button class="largeCustomBtn" type="default" size="large">{{$t('table.Visitor')}}</van-button>
+        </router-link>
     </div>
 </Layout>
 </template>

@@ -13,7 +13,7 @@
     				</li>
     			</ul>
 
-    			<van-button class="van-button--custom" :loading="form.loading == 'loading'" round :block="true" size="normal" @click="submit">Login</van-button>
+    			<van-button class="van-button--custom" :loading="form.loading == 'loading'" round :block="true" size="normal" @click="submit">登录</van-button>
     		</div>
     	</div>
 

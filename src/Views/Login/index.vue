@@ -1,6 +1,6 @@
 <template>
 <div>
-    <SignIn v-if="lan == 'zh'" />
+    <SignIn v-if="$i18n.locale == 'zh'" />
     <SignInEn v-else />
 </div>
 </template>
@@ -11,27 +11,17 @@ import SignInEn from "./SignInEn.vue";
 
 import Util from "@/assets/service/customUtil";
 
-// import Layout from "@/components/Layout";
-
 export default {
+    components: {
+        SignIn,
+        SignInEn
+    },
     data() {
         return {
-            lan: ''
         }
     },
     created() {
-        this.lan = Util.getsessionStorage('lang')
     },
-    watch: {
-        '$i18n.locale'() {
-            this.lan = this.$i18n.locale
-        }
-    },
-    components: {
-        // Layout,
-        SignIn,
-        SignInEn
-    }
 }
 </script>
 <style scoped lang="scss">
