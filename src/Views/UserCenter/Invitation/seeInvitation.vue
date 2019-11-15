@@ -8,7 +8,7 @@
                 <p>{{$t('table.MeetingTime')}}: {{viewData.Time | dateTime}}</p>
                 <p>{{$t('table.MeetingPlace')}}: {{viewData.Place}}</p>
                 <p>{{$t('table.Remark')}}: {{viewData.Remark}}</p>
-                <p>{{$t('table.MyRemark')}}: {{viewData.ReRemark}}</p>
+                <p>{{$t('table.CompanyRemark')}}: {{viewData.ReRemark}}</p>
             </div>
         </van-panel>
     </div>

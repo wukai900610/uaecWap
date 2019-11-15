@@ -21,8 +21,8 @@
                 </p>
             </div>
             <div class="btns">
-                <van-button round hairline size="small" type="info" @click="nextContact(dropdownList.value)">Contact Company</van-button>
-                <van-button round hairline size="small" type="warning" @click="nextInvitation(dropdownList.value)">Meet Company</van-button>
+                <van-button round hairline size="small" type="info" @click="nextContact(classData)">Contact Company</van-button>
+                <van-button round hairline size="small" type="warning" @click="nextInvitation(classData)">Meet Company</van-button>
             </div>
             <div class="detailInfo" v-html="classData.Summary"></div>
         </van-skeleton>
@@ -62,9 +62,6 @@ export default {
         next(url) {
             this.$router.push(url + '?id=' + this.classData.ID + '&name=' + this.classData.Name)
         },
-        // nextSupplyID() {
-        //     this.$router.push('/MatchupExpo/search/view?id=' + this.classData.SupplyID + '&type=supply')
-        // },
         // 发送站内信
         nextContact(item) {
             this.$router.push({

@@ -19,8 +19,8 @@
                             <div slot="desc">
                                 <p>{{item.Description}}</p>
                                 <div class="info">
-                                    <van-button round hairline size="small" type="info" @click.stop="nextContact(dropdownList.value)">Contact Company</van-button>
-                                    <van-button round hairline size="small" type="warning" @click.stop="nextInvitation(dropdownList.value)">Meet Company</van-button>
+                                    <van-button round hairline size="small" type="info" @click.stop="nextContact(item)">Contact Company</van-button>
+                                    <van-button round hairline size="small" type="warning" @click.stop="nextInvitation(item)">Meet Company</van-button>
                                 </div>
                             </div>
                         </van-card>
