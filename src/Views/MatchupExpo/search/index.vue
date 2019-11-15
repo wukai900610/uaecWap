@@ -78,7 +78,6 @@ export default {
         },
         onSearch() {
             this.$store.commit('searchListInit')
-            this.$store.commit('searchListType','')
             this.mode = 'keyword'
             this.getData()
         },

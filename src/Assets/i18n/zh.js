@@ -352,6 +352,8 @@ export default {
     tabNav: [{
         title: '主页',
     }, {
+        title: 'Matchup Expo',
+    }, {
         title: '我的',
     }]
 }

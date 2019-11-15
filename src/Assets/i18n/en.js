@@ -348,6 +348,8 @@ export default {
     tabNav: [{
         title: 'Home',
     }, {
+        title: 'Matchup Expo',
+    }, {
         title: 'My',
     }]
 }

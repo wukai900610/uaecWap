@@ -22,11 +22,11 @@ export default {
 					name: 'home',
 					// title: '主页',
 					tabItemClass: 'tabItem ico ico1'
-				// },
-				// {
-				// 	name: 'SecondPage',
-				// 	title: '自办展',
-				// 	tabItemClass: 'tabItem ico ico2'
+				},
+				{
+					name: 'MatchupExpo',
+					// title: 'Matchup Expo',
+					tabItemClass: 'tabItem ico ico2'
 				},
 				{
 					name: 'UserCenter',
@@ -46,7 +46,7 @@ export default {
 			if (to.name == 'home') {
 				vm.active = 0
 			} else if (to.name == 'UserCenter') {
-				vm.active = 1
+				vm.active = 2
 			}
 		})
 	},
@@ -58,7 +58,7 @@ export default {
 		if (to.name == 'home') {
 			this.active = 0
 		} else if (to.name == 'UserCenter') {
-			this.active = 1
+			this.active = 2
 		}
 
 		next()

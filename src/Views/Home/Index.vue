@@ -84,19 +84,13 @@ export default {
     created() {},
     methods: {
         onSearch(){
-            if(this.keyword){
-                this.$router.push({
-                    name:'MatchupExpo_search',
-                    query:{
-                        keyword:this.keyword,
-                        section:0,
-                    }
-                })
-            }else{
-                this.$router.push({
-                    name:'MatchupExpo',
-                })
-            }
+            this.$router.push({
+                name:'MatchupExpo_search',
+                query:{
+                    keyword:this.keyword,
+                    section:0,
+                }
+            })
         }
     },
     watch: {
