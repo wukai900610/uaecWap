@@ -79,10 +79,10 @@ router.beforeEach((to, from, next) => {
             }).then(result => {
                 // 更新最新户信息
                 Util.setsessionStorage('userInfo',result.data.User)
-
+                
                 store.dispatch('set_token', {
                     User: result.data.User,
-                    IsExhibitor: result.data.IsExhibitor,
+                    IsExhibitor: result.data.isExhibitor,
                     Ticket: token
                 })
             }).catch(e => {
