@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 const env = process.env.NODE_ENV === 'testing' ?
     require('../config/test.env') :
@@ -127,9 +129,51 @@ const webpackConfig = merge(baseWebpackConfig, {
             from: path.resolve(__dirname, '../Static'),
             to: config.build.assetsSubDirectory,
             ignore: ['.*']
-        }])
+        }]),
+        // new PrerenderSPAPlugin({
+        //     // 生成文件的路径，这个目录只能有一级。若目录层次大于一级，在生成的时候不会有任何错误提示，在预渲染的时候只会卡着不动
+        //     staticDir: path.join(__dirname, '../dist'),
+        //     // 对应自己的路由文件
+        //     routes: staticPage(),
+        //     postProcess(renderedRoute) {
+        //         // 去除自动生成的style
+        //         renderedRoute.html = renderedRoute.html
+        //             .replace(/<style id="chalk-style">(.*)<\/style>/, '')
+        //         // 去除预渲染生成多余js标签
+        //         renderedRoute.html = renderedRoute.html
+        //             .replace(/<script(.*)async=""(.*)>(.*)<\/script>/, '')
+        //
+        //         // 格式化
+        //         renderedRoute.html = renderedRoute.html
+        //             .replace(/<title>/gi, '\r\n<title>')
+        //         renderedRoute.html = renderedRoute.html
+        //             .replace(/<meta data-vue-meta-info="true"/gi, '\r\n<meta data-vue-meta-info="true"')
+        //         renderedRoute.html = renderedRoute.html
+        //             .replace(/<\/head>/gi, '\r\n</head>')
+        //
+        //         return renderedRoute
+        //     },
+        //     // 若没有这段则不会进行预编译
+        //     renderer: new Renderer({
+        //         inject: {
+        //             foo: 'bar'
+        //         },
+        //         headless: false,
+        //         // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
+        //         renderAfterDocumentEvent: 'render-event',
+        //         //puppeteer参数，标签意思：完全信任在Chrome中打开的内容
+        //         // args: ['--no-sandbox', '--disable-setuid-sandbox']
+        //     })
+        // }),
     ]
 })
+
+// 需要预渲染的页面
+function staticPage() {
+    let router = ['/home']
+
+    return router
+}
 
 if (config.build.productionGzip) {
     const CompressionWebpackPlugin = require('compression-webpack-plugin')

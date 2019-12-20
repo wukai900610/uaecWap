@@ -36,6 +36,10 @@ export default {
         customRequest({
             method: 'get',
             url: '/B2BSupply/GetMyList',
+            // url: '/b2b' + this.$route.query.type + '/get',
+            // params: {
+            //     id: this.$route.query.id,
+            // },
             params: {
                 page: 1,
                 size: 10,
